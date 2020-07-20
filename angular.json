@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "infoserwis-app"
+  "defaultProject": "infoserwis-app",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

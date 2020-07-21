@@ -1,3 +1,4 @@
+import { selectOneUser } from './../selectors/user.selectors';
 import { User } from './../../core/model/user';
 import { Action, createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
@@ -16,14 +17,10 @@ export const initialState: UserState = adapter.getInitialState({
   userId: null
 });
 
+export const selectUserState = (state: UserState) => state;
 
 export const userReducer = createReducer(
   initialState,
-  on(UserActions.getUser, (state, action) => {
-    return {
-      ...state
-    };
-  }),
   on(UserActions.getUserSuccess, (state, action) => {
     return adapter.addOne(action.user, state);
   }),

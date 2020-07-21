@@ -1,15 +1,31 @@
+import { User } from './../../core/model/user';
 import { createAction, props } from '@ngrx/store';
 
-export const loadUsers = createAction(
-  '[User] Load Users'
+export const getUser = createAction(
+  '[User] Get User',
+  props<{ userId: number }>()
 );
 
-export const loadUsersSuccess = createAction(
-  '[User] Load Users Success',
-  props<{ data: any }>()
+export const getUserSuccess = createAction(
+  '[User] Get User Success',
+  props<{ user: User }>()
 );
 
 export const loadUsersFailure = createAction(
-  '[User] Load Users Failure',
-  props<{ error: any }>()
+  '[User] Get User Failure'
 );
+
+
+// export class GetCustomer implements Action {
+//   readonly type = GET_CUSTOMER;
+//   constructor(public readonly payload: number) {}
+// }
+
+// export class GetCustomerSuccess implements Action {
+//   readonly type = GET_CUSTOMER_SUCCESS;
+//   constructor(public readonly payload: Customer) {}
+// }
+
+// export class GetCustomerError extends CustomerErrorAction {
+//   readonly type = GET_CUSTOMER_ERROR;
+// }

@@ -8,8 +8,10 @@ export const getUser = createAction(
 
 export const getUserSuccess = createAction(
   '[User] Get User Success',
-  props<{ user: User }>()
+  props<{ user: User[] }>()
 );
+
+export const addUsers = createAction('[User/API] Add Users', props<{ user: User[] }>());
 
 export const loadUsersFailure = createAction(
   '[User] Get User Failure'

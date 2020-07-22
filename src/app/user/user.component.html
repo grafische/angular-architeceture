@@ -1,2 +1,8 @@
 <h1>User</h1>
+{{ user$ | async | json }}
+ ---
+{{ userId$ | async | json }}
+-----
+{{ userE$ | async | json }}
+<button (click) ="getUser()">get User</button>
 <router-outlet></router-outlet>

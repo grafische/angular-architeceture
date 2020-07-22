@@ -16,9 +16,9 @@ export class UserEffects {
   loadUser$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.getUser),
-      concatMap( (action) =>
+      exhaustMap( () =>
       this.dataUserService
-      .getUser(action.userId)
+      .getUser()
       .pipe(
         map(user => UserActions.getUserSuccess({ user })),
         catchError( (err: DataServiceError<any>) => UserActions.loadUsersFailure)

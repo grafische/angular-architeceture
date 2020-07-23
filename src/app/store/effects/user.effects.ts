@@ -14,18 +14,14 @@ export class UserEffects {
   constructor(private dataUserService: DataUserService, private actions$: Actions) {}
 
   loadUser$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(UserActions.getUser),
-      exhaustMap( () =>
-      this.dataUserService
-      .getUser()
-      .pipe(
-        map(user => UserActions.getUserSuccess({ user })),
-        catchError( (err: DataServiceError<any>) => UserActions.loadUsersFailure)
-      )
-      )
+  this.actions$.pipe(
+    ofType(UserActions.enter),
+    exhaustMap(() => this.dataUserService.getUser().pipe(
+      map(users => UserActions.addUsers({ users }))
     )
-  );
+    )
+  )
+  )
 
 }
 

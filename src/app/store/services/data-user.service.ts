@@ -14,11 +14,8 @@ export class DataUserService {
 
   constructor( private http: HttpClient ) { }
 
-  getUser(): Observable<User[]> {
-    return this.http.get<User[]>(`https://run.mocky.io/v3/e5ec339d-1127-4e5d-a05f-561a4f6fe2b4`) // //${this.apiUrlBase}id=${id} https://reqres.in/api/users/2
-    .pipe(
-      catchError(this.handleError())
-    );
+  getUser() {
+    return this.http.get<User[]>(`https://run.mocky.io/v3/861a976f-f24a-4937-a1d1-1644ed3ac14d`);
   }
 
   private handleError<T>(requestData?: T) {

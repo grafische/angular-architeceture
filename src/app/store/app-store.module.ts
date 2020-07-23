@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { reducers } from './reducers';
+import { reducers } from './selectors/user.selectors';
 
 
 @NgModule({
@@ -14,7 +14,7 @@ import { reducers } from './reducers';
   imports: [
     CommonModule,
     HttpClientModule,
-    StoreModule.forFeature('entityCache', reducers),
+    StoreModule.forFeature('entities', reducers),
     EffectsModule.forFeature([ UserEffects ])
   ],
   providers: [

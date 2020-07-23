@@ -22,7 +22,7 @@ import { UserModule } from './user/user.module';
     CoreModule,
     BrowserAnimationsModule,
     AppStoreModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     UserModule

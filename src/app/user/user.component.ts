@@ -1,4 +1,5 @@
-import { EntityState } from './../store/reducers/index';
+import { State } from './../store/reducers/user.reducer';
+//import { EntityState } from './../store/reducers/index';
 import { User } from './../core/model/user';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -17,14 +18,14 @@ export class UserComponent implements OnInit {
   userE$: Observable<any>;
 
 
-  constructor(private store: Store<EntityState> ) {
+  constructor(private store: Store<State> ) {
     this.user$ = store.select(Selectors.selectAllUsers);
     this.userId$ = store.select(Selectors.selectUserIds);
     this.userE$ =store.select(Selectors.selectUserEntities);
   }
 
   ngOnInit(): void {
-    this.store.dispatch(UserAction.getUser({ userId: 2 }));
+    this.store.dispatch(UserAction.enter());
 
     // this.user$ = this.store.dispatch(UserAction.getUser({userId: 2}));
   }

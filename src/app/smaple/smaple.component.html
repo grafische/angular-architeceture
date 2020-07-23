@@ -1,1 +1,15 @@
-<p>smaple works!</p>
+<h1>Pracownicy</h1>
+<!-- <p>smaple works!</p>
+{{ smaples$ | async | json }} ----- {{ smaple$ | async | json }} ----  {{ total$ | async | json }}
+-------- {{ entities$ | async | json }}-->
+<ng-template ngFor let-item [ngForOf]="smaples$ | async" let-i="index" >
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>{{ item.name }}</mat-card-title>
+      <mat-card-subtitle>{{ item.surname }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ item.position }}</p>
+    </mat-card-content>
+  </mat-card>
+</ng-template>

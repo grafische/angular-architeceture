@@ -2,6 +2,14 @@ import { ActionReducerMap, createFeatureSelector, createSelector, MetaReducer } 
 
 import * as actions from '../actions';
 import * as fromUser from './user.reducer';
+
+export interface State {
+  users: fromUser.State;
+}
+
+export const reducers: ActionReducerMap<State> = {
+  users: fromUser.reducer,
+};
 // import { UserState } from './user.reducer';
 
 // export type Action = actions.CustomerAction;

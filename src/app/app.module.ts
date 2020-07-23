@@ -10,6 +10,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+
+import { MaterialModule } from './shared/material/material.module';
 import { UserModule } from './user/user.module';
 
 @NgModule({
@@ -25,6 +27,7 @@ import { UserModule } from './user/user.module';
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
+    MaterialModule,
     UserModule
   ],
   providers: [],

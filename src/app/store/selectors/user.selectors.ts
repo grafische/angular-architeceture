@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector, ActionReducerMap } from '@ngrx/store';
 //import { EntityState } from '../reducers';
 import * as fromUser from '../reducers/user.reducer';
+import { State } from '../reducers/user.reducer';
 
 // export const getEntityState = createFeatureSelector<EntityState>('entityCache');
 
@@ -12,15 +13,10 @@ import * as fromUser from '../reducers/user.reducer';
 // );
 
 
-export interface State {
-  users: fromUser.State;
-}
 
-export const reducers: ActionReducerMap<State> = {
-  users: fromUser.reducer,
-};
 
-export const selectUserState = createFeatureSelector<fromUser.State>('entities');
+export const selectUserState = createFeatureSelector<fromUser.State>(fromUser.userFeatureKey);
+export const getUser = (state: State) => state;
 
 export const selectUserIds = createSelector(
   selectUserState,
@@ -38,13 +34,13 @@ export const selectUserTotal = createSelector(
   selectUserState,
   fromUser.selectUserTotal
 );
-export const selectCurrentUserId = createSelector(
-  selectUserState,
-  fromUser.getSelectedUserId
-);
+// export const selectCurrentUserId = createSelector(
+//   selectUserState,
+//   fromUser.getSelectedUserId
+// );
 
-export const selectCurrentUser = createSelector(
-  selectUserEntities,
-  selectCurrentUserId,
-  (userEntities, userId) => userEntities[userId]
-);
+// export const selectCurrentUser = createSelector(
+//   selectUserEntities,
+//   selectCurrentUserId,
+//   (userEntities, userId) => userEntities[userId]
+// );

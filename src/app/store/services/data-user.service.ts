@@ -15,7 +15,7 @@ export class DataUserService {
   constructor( private http: HttpClient ) { }
 
   getUser() {
-    return this.http.get<User[]>(`https://run.mocky.io/v3/861a976f-f24a-4937-a1d1-1644ed3ac14d`);
+    return this.http.get<User[]>(`${this.apiUrlBase}api/testcontroller/tenemployeesjson`);
   }
 
   private handleError<T>(requestData?: T) {

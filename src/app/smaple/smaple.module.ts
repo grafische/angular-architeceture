@@ -1,3 +1,4 @@
+import { MaterialModule } from './../shared/material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -14,7 +15,8 @@ import { SmapleEffects } from './state/effects/smaple.effects';
   imports: [
     CommonModule,
     SmapleRoutingModule,
-    StoreModule.forFeature(fromSmaple.smapleFeatureKey, fromSmaple.reducer),
+    MaterialModule,
+    StoreModule.forFeature(fromSmaple.smaplesFeatureKey, fromSmaple.reducer),
     EffectsModule.forFeature([SmapleEffects])
   ]
 })

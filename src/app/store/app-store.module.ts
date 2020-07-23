@@ -6,7 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
-import { reducers } from './selectors/user.selectors';
+import { reducers } from './reducers/';
+import * as reducerUser from './reducers/user.reducer';
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import { reducers } from './selectors/user.selectors';
   imports: [
     CommonModule,
     HttpClientModule,
-    StoreModule.forFeature('entities', reducers),
+    StoreModule.forFeature(reducerUser.userFeatureKey, reducers.users),
     EffectsModule.forFeature([ UserEffects ])
   ],
   providers: [

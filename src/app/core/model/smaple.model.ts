@@ -1,4 +1,4 @@
-export interface User {
+export interface Smaple {
   id: number;
   department: {
     id: number;

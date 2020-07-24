@@ -24,14 +24,3 @@ export class UserEffects {
   )
 
 }
-
-// (err: DataServiceError<T>) => of(new errorAction(err))
-
-// .pipe(
-//   ofType(UserActions.getUser),
-//   exhaustMap(() =>
-//     this.dataUserService
-//       .getUser()
-//       .pipe(map(user => UserActions.getUserSuccess({ user })))
-//   )
-// )

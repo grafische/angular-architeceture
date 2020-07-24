@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { UserRoutingModule } from './user-routing.module';
 import { MaterialModule } from '../shared/material/material.module';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from '../store/effects/user.effects';
 
 
 @NgModule({
@@ -10,7 +12,8 @@ import { MaterialModule } from '../shared/material/material.module';
   imports: [
     CommonModule,
     UserRoutingModule,
-    MaterialModule
+    MaterialModule,
+    EffectsModule.forFeature([UserEffects])
   ]
 })
 export class UserModule { }

@@ -1,4 +1,3 @@
-import { AppStoreModule } from './store/app-store.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -24,7 +23,6 @@ import { reducers } from './store';
     AppRoutingModule,
     CoreModule,
     BrowserAnimationsModule,
-    AppStoreModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),

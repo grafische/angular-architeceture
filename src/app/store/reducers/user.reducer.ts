@@ -61,5 +61,6 @@ export function reducer(state: State | undefined, action: Action) {
 }
 
 //export const getSelectedUserId = (state: State) => state.selectedUserId;
+export const { selectAll, selectEntities } = adapter.getSelectors();
 
 

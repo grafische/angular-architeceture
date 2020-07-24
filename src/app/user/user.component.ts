@@ -1,4 +1,4 @@
-import { State } from './../store/reducers/user.reducer';
+import { State } from './../store';
 //import { EntityState } from './../store/reducers/index';
 import { User } from './../core/model/user';
 import { Component, OnInit } from '@angular/core';
@@ -13,15 +13,15 @@ import * as UserAction from '../store/actions';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  user$: Observable<User[] | null>;
+  user$: Observable<User[]>;
   userId$: Observable<string[] | number[] >;
   userE$: Observable<any>;
 
 
   constructor(private store: Store<State> ) {
-    this.user$ = store.select(Selectors.selectAll);
-    this.userId$ = store.select(Selectors.selectIds);
-    this.userE$ =store.select(Selectors.selectEntities);
+    this.user$ = store.select(Selectors.selectAllUser);
+    // this.userId$ = store.select(Selectors.selectIds);
+    // this.userE$ =store.select(Selectors.selectEntities);
   }
 
   ngOnInit(): void {

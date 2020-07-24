@@ -7,7 +7,9 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class DataUserService {
 
   private readonly apiUrlBase: string = environment.apiUrlBase;

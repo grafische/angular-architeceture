@@ -13,6 +13,7 @@ import { EffectsModule } from '@ngrx/effects';
 
 import { MaterialModule } from './shared/material/material.module';
 import { UserModule } from './user/user.module';
+import { reducers } from './store/reducers';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { UserModule } from './user/user.module';
     CoreModule,
     BrowserAnimationsModule,
     AppStoreModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     MaterialModule,

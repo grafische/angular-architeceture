@@ -16,24 +16,32 @@ import { State } from '../reducers/user.reducer';
 
 
 export const selectUserState = createFeatureSelector<fromUser.State>(fromUser.userFeatureKey);
-export const getUser = (state: State) => state;
 
-export const selectUserIds = createSelector(
-  selectUserState,
-  fromUser.selectUserIds // shorthand for usersState => fromUser.selectUserIds(usersState)
-);
-export const selectUserEntities = createSelector(
-  selectUserState,
-  fromUser.selectUserEntities
-);
-export const selectAllUsers = createSelector(
-  selectUserState,
-  fromUser.selectAllUsers
-);
-export const selectUserTotal = createSelector(
-  selectUserState,
-  fromUser.selectUserTotal
-);
+// get the selectors
+export const {
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal,
+} = fromUser.adapter.getSelectors(selectUserState);
+
+
+// export const selectUserIds = createSelector(
+//   selectUserState,
+//   fromUser.selectUserIds // shorthand for usersState => fromUser.selectUserIds(usersState)
+// );
+// export const selectUserEntities = createSelector(
+//   selectUserState,
+//   fromUser.selectUserEntities
+// );
+// export const selectAllUsers = createSelector(
+//   selectUserState,
+//   fromUser.selectAllUsers
+// );
+// export const selectUserTotal = createSelector(
+//   selectUserState,
+//   fromUser.selectUserTotal
+// );
 // export const selectCurrentUserId = createSelector(
 //   selectUserState,
 //   fromUser.getSelectedUserId

@@ -19,9 +19,9 @@ export class UserComponent implements OnInit {
 
 
   constructor(private store: Store<State> ) {
-    this.user$ = store.select(Selectors.selectAllUsers);
-    this.userId$ = store.select(Selectors.selectUserIds);
-    this.userE$ =store.select(Selectors.selectUserEntities);
+    this.user$ = store.select(Selectors.selectAll);
+    this.userId$ = store.select(Selectors.selectIds);
+    this.userE$ =store.select(Selectors.selectEntities);
   }
 
   ngOnInit(): void {

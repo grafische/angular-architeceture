@@ -30,7 +30,7 @@ export const deleteUser = createAction('[User/API] Delete User', props<{ id: str
 export const deleteUsers = createAction('[User/API] Delete Users', props<{ ids: string[] }>());
 export const deleteUsersByPredicate = createAction('[User/API] Delete Users By Predicate', props<{ predicate: Predicate<User> }>());
 export const clearUsers = createAction('[User/API] Clear Users');
-
+export const loadUserFailure = createAction('[User/API] Load Fail', props<{ error }>());
 
 // export class GetCustomer implements Action {
 //   readonly type = GET_CUSTOMER;

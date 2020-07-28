@@ -7,11 +7,15 @@ import * as UserActions from '../actions';
 
 export const userFeatureKey = 'user';
 
-export interface State extends EntityState<User> {}
+export interface State extends EntityState<User> {
+  error: Error;
+}
 
 export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
 
-export const initialState: State = adapter.getInitialState();
+export const initialState: State = adapter.getInitialState({
+  error: null,
+});
 
 const userReducer = createReducer(
   initialState,
@@ -53,7 +57,13 @@ const userReducer = createReducer(
   }),
   on(UserActions.clearUsers, state => {
     return adapter.removeAll({ ...state, selectedUserId: null });
-  })
+  }),
+  on(UserActions.loadUserFailure, (state , action) => {
+    return {
+      ...state,
+      error: action.error
+    };
+  }),
 );
 
 export function reducer(state: State | undefined, action: Action) {

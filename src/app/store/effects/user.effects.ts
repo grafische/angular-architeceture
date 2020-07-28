@@ -6,6 +6,7 @@ import * as UserActions from '../actions';
 import { User } from 'src/app/core/model/user';
 import { exhaustMap, map, concatMap, catchError } from 'rxjs/operators';
 import { DataServiceError } from '../services/data-error.service';
+import { of } from 'rxjs';
 
 
 @Injectable()
@@ -17,10 +18,11 @@ export class UserEffects {
   this.actions$.pipe(
     ofType(UserActions.enter),
     exhaustMap(() => this.dataUserService.getUser().pipe(
-      map(users => UserActions.addUsers({ users }))
+        map(users => UserActions.addUsers({ users })),
+        catchError( error => of(UserActions.loadUserFailure({ error })) )
+        )
+      )
     )
-    )
-  )
   )
 
 }

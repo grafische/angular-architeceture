@@ -16,10 +16,12 @@ export class UserComponent implements OnInit {
   user$: Observable<User[]>;
   userId$: Observable<string[] | number[] >;
   userE$: Observable<any>;
+  errorMessage$: Observable<Error>
 
 
   constructor(private store: Store<State> ) {
     this.user$ = store.select(Selectors.selectAllUser);
+    this.errorMessage$ = store.select(Selectors.getErrorUser);
     // this.userId$ = store.select(Selectors.selectIds);
     // this.userE$ =store.select(Selectors.selectEntities);
   }

@@ -17,4 +17,9 @@
   </mat-card>
 </ng-template>
 
+<div *ngIf="errorMessage$ | async as errorMessage"
+     class="alert alert-danger">
+  Error: {{ errorMessage.message }}
+</div>
+
 <router-outlet></router-outlet>

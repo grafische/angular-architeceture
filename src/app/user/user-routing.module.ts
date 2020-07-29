@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UserComponent } from './user.component';
+import { UserPageComponent } from './components/user-page/user-page.component';
 
 const routes: Routes = [
-  { path: '', component: UserComponent }
+  { path: '', component: UserPageComponent }
 ];
 
 @NgModule({
@@ -11,5 +11,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class UserRoutingModule {
-  static components = [ UserComponent ];
+  static components = [ UserPageComponent];
 }

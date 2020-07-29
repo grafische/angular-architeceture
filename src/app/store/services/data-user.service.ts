@@ -17,7 +17,7 @@ export class DataUserService {
   constructor( private http: HttpClient ) { }
 
   getUser() {
-    return this.http.get<User[]>(`${this.apiUrlBase}api/testcontroller/tenemployeessjson`);
+    return this.http.get<User[]>(`${this.apiUrlBase}api/testcontroller/tenemployeesjson`);
   }
 
   private handleError<T>(requestData?: T) {

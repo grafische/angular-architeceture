@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 
 import { MaterialModule } from './shared/material/material.module';
-import { UserModule } from './user/user.module';
+import { UserModule } from './user';
 import { reducers } from './store';
 
 @NgModule({

@@ -9,3 +9,8 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.alert-error {
+  background-color: #e00000;
+  color: white;
+}

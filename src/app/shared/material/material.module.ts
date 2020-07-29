@@ -9,12 +9,16 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { BottomSheetAlertComponent } from './bottomsheet/bottom-sheet-alert.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [BottomSheetAlertComponent],
   imports: [
     CommonModule,
+  ],
+  entryComponents: [
+    BottomSheetAlertComponent
   ],
   exports: [
     MatButtonModule,
@@ -25,7 +29,8 @@ import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
     MatListModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    BottomSheetAlertComponent
   ]
 })
 export class MaterialModule { }

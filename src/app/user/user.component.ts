@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import * as Selectors from '../store/selectors';
 import * as UserAction from '../store/actions';
+import { tap } from 'rxjs/operators';
+import { BottomSheetAlertComponent } from '../shared/material/bottomsheet/bottom-sheet-alert.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 @Component({
   selector: 'app-user',
@@ -19,9 +22,19 @@ export class UserComponent implements OnInit {
   errorMessage$: Observable<Error>
 
 
-  constructor(private store: Store<State> ) {
+  constructor(private store: Store<State>, private _bottomSheet: MatBottomSheet ) {
     this.user$ = store.select(Selectors.selectAllUser);
-    this.errorMessage$ = store.select(Selectors.getErrorUser);
+    this.errorMessage$ = store.select(Selectors.getErrorUser).pipe(
+      tap(
+        val => {
+          if( val != null ) {  this._bottomSheet.open(BottomSheetAlertComponent, {
+            data: { message: val.message },
+            panelClass: "alert-error"
+          });
+          }
+        }
+      )
+    );
     // this.userId$ = store.select(Selectors.selectIds);
     // this.userE$ =store.select(Selectors.selectEntities);
   }

@@ -1,16 +1,15 @@
-<div class="content" role="main">
-<div class="container">
-  <div class="row">
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
-    <div class="col">
-      One of three columns
-    </div>
+<mat-drawer-container class="info-sidenav-container" autosize>
+  <mat-drawer #drawer class="info-sidenav" mode="side">
+    <app-header-list-menu customClass="nav flex-column"></app-header-list-menu>
+  </mat-drawer>
+
+  <div class="info-sidenav-content" >
+    <app-header-page [sidenav]="drawer"></app-header-page>
   </div>
-</div>
+
+
+
+</mat-drawer-container>
+
 
 <router-outlet></router-outlet>

@@ -1,3 +1,4 @@
+import { HeaderModule } from './header/header.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -16,7 +17,7 @@ import { reducers } from './store';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,8 @@ import { reducers } from './store';
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     MaterialModule,
-    UserModule
+    UserModule,
+    HeaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]

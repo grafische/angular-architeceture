@@ -5,6 +5,10 @@
 @import "~bootstrap/scss/mixins";
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/nav";
+// @import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/alert";
 @import "reset";
 
 html, body { height: 100%; }
@@ -13,4 +17,19 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .alert-error {
   background-color: #e00000;
   color: white;
+}
+
+.#{$namespace}-container-full {
+  width: 100%;
+}
+
+.#{$namespace}-content-width {
+  width: 100%;
+  margin: 0 auto;
+  max-width: $width_site;
+}
+
+.#{$namespace}-no-space-p {
+  padding: 0!important
+  ;
 }

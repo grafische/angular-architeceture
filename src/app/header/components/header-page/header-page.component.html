@@ -1,0 +1,21 @@
+<div class="shadow-sm mb-2 info-container-full">
+  <div class="container">
+    <mat-toolbar class="info-no-space-p row"  color="white">
+      <div class="col-3">
+      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" #menu_button (click)="openSide()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <img src="../../../../assets/logo_insert_infoserwis.png" alt="logo InsERT Infoserwis">
+    </div>
+    <div class="col-6 d-sm-none d-md-block">
+      <app-header-list-menu [data] = "menu_data"></app-header-list-menu>
+    </div>
+    <div class="col-3">
+      <app-header-user></app-header-user>
+    </div>
+    </mat-toolbar>
+  </div>
+</div>
+
+
+

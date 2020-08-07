@@ -1,0 +1,16 @@
+<p>vacations-page works!</p>
+
+<ng-container *ngIf="vacation$ | async as vacation; else elseTemplate">
+  <!-- <div *ngFor="let item of vacation">
+    {{ item.employeeName }}
+  </div> -->
+  <app-vacations-list [dataList]="vacation"></app-vacations-list>
+</ng-container>
+<ng-template #elseTemplate>
+  nie ma
+</ng-template>
+
+
+
+
+

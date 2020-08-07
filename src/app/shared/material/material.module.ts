@@ -11,6 +11,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 import { BottomSheetAlertComponent } from './bottomsheet/bottom-sheet-alert.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -31,7 +35,11 @@ import { BottomSheetAlertComponent } from './bottomsheet/bottom-sheet-alert.comp
     MatSidenavModule,
     MatToolbarModule,
     MatBottomSheetModule,
-    BottomSheetAlertComponent
+    BottomSheetAlertComponent,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }

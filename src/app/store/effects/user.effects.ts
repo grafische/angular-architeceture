@@ -3,9 +3,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
 import * as UserActions from '../actions';
-import { User } from 'src/app/core/model/user';
+
 import { exhaustMap, map, concatMap, catchError } from 'rxjs/operators';
-import { DataServiceError } from '../services/data-error.service';
 import { of } from 'rxjs';
 
 

@@ -19,6 +19,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   color: white;
 }
 
+.form-field-full-width {
+  width: 100%;
+}
+
+.container-boxgrey {
+  background: #f6f6f6;
+}
+
 .#{$namespace}-container-full {
   width: 100%;
 }

@@ -10,7 +10,8 @@ const routes: Routes = [
   {
     path: 'sample',
     loadChildren: () => import('./smaple/smaple.module').then(m => m.SmapleModule)
-  }
+  },
+  { path: 'urlopy', loadChildren: () => import('./vacations/vacations.module').then(m => m.VacationsModule) }
 ];
 
 @NgModule({

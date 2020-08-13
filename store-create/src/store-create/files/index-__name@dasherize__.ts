@@ -2,7 +2,8 @@ import { ActionReducerMap, createFeatureSelector, createSelector, MetaReducer } 
 
 import * as fromUser from './reducers/user.reducer';
 import * as fromVacations from './reducers/vacation.reducer';
-import * as fromDepartments from './reducers/department.reducer';
+//copy line
+import * as from<%= classify(name) %>s from './reducers/<%= dasherize(name) %>.reducer';
 
 export * from './actions';
 export * from './services';
@@ -11,12 +12,14 @@ export * from './services';
 export interface State {
   users: fromUser.State;
   vacations: fromVacations.State;
-  departments: fromDepartments.State;
+  //copy line
+  <%= camelize(name) %>s: from<%= classify(name) %>s.State;
 
 }
 
 export const reducers: ActionReducerMap<State> = {
   users: fromUser.reducer,
   vacations: fromVacations.reducer,
-  departments: fromDepartments.reducer
+  //copy line
+  <%= camelize(name) %>s: from<%= classify(name) %>s.reducer
 };

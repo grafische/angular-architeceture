@@ -1,10 +1,11 @@
 <p>vacations-page works!</p>
 
-<ng-container *ngIf="vacation$ | async as vacation; else elseTemplate">
+<ng-container *ngIf="{ vacationList: vacation$ | async, departmentList: department$ | async } as vacationDatas; else elseTemplate">
+
   <!-- <div *ngFor="let item of vacation">
     {{ item.employeeName }}
   </div> -->
-  <app-vacations-list [dataList]="vacation"></app-vacations-list>
+  <app-vacations-list [departmentList]="vacationDatas.departmentList" [dataList]="vacationDatas.vacationList"></app-vacations-list>
 </ng-container>
 <ng-template #elseTemplate>
   nie ma

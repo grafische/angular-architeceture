@@ -15,15 +15,10 @@ export class VacationEffects {
     this.actions$.pipe(
       ofType(VacationActions.enterVacations),
       exhaustMap( () => this.dataVacationService.getVacations().pipe(
-        tap( val => {
-          console.info("val");
-          console.info(val);
-        } ),
         map( vacations =>  VacationActions.addVacations({ vacations })),
         catchError( error => of( VacationActions.loadVacationsFailure({ error }) )
         )
       ))
     )
   );
-
 }

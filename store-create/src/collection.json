@@ -1,0 +1,10 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "store-create": {
+      "description": "A blank schematic.",
+      "factory": "./store-create/index#storeCreate",
+      "schema": "./store-create/schema.json"
+    }
+  }
+}

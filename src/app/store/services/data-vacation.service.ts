@@ -15,6 +15,7 @@ export class DataVacationService {
   constructor( private http: HttpClient ) { }
 
   getVacations() {
-    return this.http.get<Vacation[]>(`${this.apiUrlBase}api/leave`);
+    return this.http.get<Vacation[]>('http://127.0.0.1:8887/leave.json'); //`${this.apiUrlBase}api/leave`
+    //http://127.0.0.1:8887/leave.json
   }
 }

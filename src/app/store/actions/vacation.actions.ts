@@ -44,12 +44,12 @@ export const updateVacations = createAction(
 
 export const deleteVacation = createAction(
   '[Vacation/API] Delete Vacation',
-  props<{ id: string }>()
+  props<{ id: number }>()
 );
 
 export const deleteVacations = createAction(
   '[Vacation/API] Delete Vacations',
-  props<{ ids: string[] }>()
+  props<{ ids: number[] }>()
 );
 
 export const clearVacations = createAction(
@@ -61,3 +61,7 @@ export const loadVacationsFailure = createAction(
   props<{ error }>()
 );
 
+export const deletedVacation = createAction(
+  '[Vacation/API] Deleted Vacation',
+  props<{ id: number }>()
+);

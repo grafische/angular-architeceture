@@ -1,4 +1,5 @@
 export interface Vacation {
+  leaveId: number | null;
   employeeId: number | null;
   employeeName: string;
   employeeLogin: string;
@@ -9,4 +10,5 @@ export interface Vacation {
   remarks: string | null;
   departmentId: number;
   departmentName: string;
+  kindAC?: string;
 }

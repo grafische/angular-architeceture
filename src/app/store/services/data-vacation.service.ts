@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Department } from './../../core/model/department.model';
 import { Observable } from 'rxjs';
 import { environment } from './../../../environments/environment.prod';
@@ -15,7 +16,20 @@ export class DataVacationService {
   constructor( private http: HttpClient ) { }
 
   getVacations() {
-    return this.http.get<Vacation[]>('http://127.0.0.1:8887/leave.json'); //`${this.apiUrlBase}api/leave`
+    return this.http.get<Vacation[]>(`${this.apiUrlBase}api/leave`).pipe(
+      map( val => {
+        val.forEach( (item, idx) => {
+          const currentDate: Date = new Date();
+          const current = (new Date(item.startDate).getTime() <= currentDate.getTime() && new Date(item.endDate).getTime() >= new Date(item.endDate).getTime())? 'aktualny' : 'planowany';
+          item.kindAC = current;
+        });
+        return val;
+      })
+    ); //
     //http://127.0.0.1:8887/leave.json
+  }
+
+  delete(id: number) {
+    return this.http.delete(`${this.apiUrlBase}api/leave/${id}`);
   }
 }

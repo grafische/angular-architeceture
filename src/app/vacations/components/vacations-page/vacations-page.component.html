@@ -1,14 +1,23 @@
-<p>vacations-page works!</p>
 
-<ng-container *ngIf="{ vacationList: vacation$ | async, departmentList: department$ | async } as vacationDatas; else elseTemplate">
-
-  <!-- <div *ngFor="let item of vacation">
-    {{ item.employeeName }}
-  </div> -->
-  <app-vacations-list [departmentList]="vacationDatas.departmentList" [dataList]="vacationDatas.vacationList"></app-vacations-list>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-3">
+      <button mat-icon-button color="primary">
+        <mat-icon>calendar_today</mat-icon>Zgłaszam urlop
+      </button>
+    </div>
+    <div class="col-3">
+      <button mat-icon-button color="primary">
+        <mat-icon>calendar_today</mat-icon>Moje urlopy
+      </button>
+    </div>
+  </div>
+</div>
+<ng-container *ngIf="{ vacationList: vacation$ | async, departmentList: department$ | async, typeList: vacationType$ | async } as vacationDatas; else elseTemplate">
+  <app-vacations-list [departmentList]="vacationDatas.departmentList" [dataList]="vacationDatas.vacationList" [typesList]="vacationDatas.typeList" (delete)="onDelete($event)"></app-vacations-list>
 </ng-container>
 <ng-template #elseTemplate>
-  nie ma
+  Brak
 </ng-template>
 
 

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { exhaustMap, map, catchError, tap } from 'rxjs/operators';
+import { exhaustMap, map, catchError, tap, mergeMap } from 'rxjs/operators';
 
 import { DataVacationService } from './../services/data-vacation.service';
 import * as VacationActions from '../actions/vacation.actions';
@@ -21,4 +21,15 @@ export class VacationEffects {
       ))
     )
   );
+
+  deleteVacation$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(VacationActions.deleteVacation),
+      mergeMap( action => this.dataVacationService.delete(action.id).pipe(
+        map( val => VacationActions.deletedVacation({ id: action.id}) ),
+        catchError( error => of( VacationActions.loadVacationsFailure({ error }) ))
+      ))
+    )
+  );
 }
+

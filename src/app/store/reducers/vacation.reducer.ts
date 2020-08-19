@@ -12,7 +12,7 @@ export interface State extends EntityState<Vacation> {
 
 export function selectVacationId(a: Vacation): number {
   //In this case this would be optional since primary key is id
-  return a.employeeId;
+  return a.leaveId;
 }
 
 export const adapter: EntityAdapter<Vacation> = createEntityAdapter<Vacation>({

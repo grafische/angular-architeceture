@@ -1,0 +1,23 @@
+<div class="spinner" *ngIf="gettingStatus$ | async; else checkIfAuthenticated">
+  <mat-spinner color="primary" [diameter]="40"></mat-spinner>
+</div>
+<ng-template #checkIfAuthenticated>
+  <ng-container *ngIf="user$ | async as UserData; else loginForm">
+    <app-header-page [sidenav]="side" [user]="UserData"></app-header-page>
+    <router-outlet *ngIf="user$ | async; else loginForm"></router-outlet>
+  </ng-container>
+  <ng-template #loginForm>
+    <div class="container mb-5 mt-5">
+      <div class="row justify-content-center">
+        <div class="col-4">
+          <img src="../../../../../assets/logo_insert_infoserwis.png" alt="logo infoserwis">
+        </div>
+      </div>
+    </div>
+    <app-login-form
+      [error]="error$ | async"
+      (login)="onLogin($event)"
+    ></app-login-form>
+  </ng-template>
+</ng-template>
+

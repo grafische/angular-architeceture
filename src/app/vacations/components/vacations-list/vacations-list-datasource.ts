@@ -1,27 +1,20 @@
+
+
+
+import { Vacation } from './../../../core/model/vacation.model';
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { Vacation } from '../../../core/model/vacation.model';
 
-// TODO: Replace this with your own data model type
-export interface VacationsListItem extends Vacation {
-
-}
-
-
-/**
- * Data source for the VacationsList view. This class should
- * encapsulate all logic for fetching and manipulating the displayed data
- * (including sorting, pagination, and filtering).
- */
-export class VacationsListDataSource extends DataSource<VacationsListItem> {
-  data: VacationsListItem[];
+export class VacationsListDataSource extends DataSource<Vacation> {
+  data: Vacation[];
   paginator: MatPaginator;
   sort: MatSort;
+  dataVacation: Vacation[];
 
-  constructor( data: VacationsListItem[] ) {
+  constructor( data?: Vacation[]) {
     super();
     this.data = data;
   }
@@ -31,7 +24,7 @@ export class VacationsListDataSource extends DataSource<VacationsListItem> {
    * the returned stream emits new items.
    * @returns A stream of the items to be rendered.
    */
-  connect(): Observable<VacationsListItem[]> {
+  connect(): Observable<Vacation[]> {
     // Combine everything that affects the rendered data into one update
     // stream for the data-table to consume.
     const dataMutations = [
@@ -55,7 +48,7 @@ export class VacationsListDataSource extends DataSource<VacationsListItem> {
    * Paginate the data (client-side). If you're using server-side pagination,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getPagedData(data: VacationsListItem[]) {
+  private getPagedData(data: Vacation[]) {
     const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
     return data.splice(startIndex, this.paginator.pageSize);
   }
@@ -64,7 +57,7 @@ export class VacationsListDataSource extends DataSource<VacationsListItem> {
    * Sort the data (client-side). If you're using server-side sorting,
    * this would be replaced by requesting the appropriate data from the server.
    */
-  private getSortedData(data: VacationsListItem[]) {
+  private getSortedData(data: Vacation[]) {
     if (!this.sort.active || this.sort.direction === '') {
       return data;
     }
@@ -73,7 +66,7 @@ export class VacationsListDataSource extends DataSource<VacationsListItem> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'name': return compare(a.employeeName, b.employeeName, isAsc);
-        case 'id': return compare(+a.employeeId, +b.employeeId, isAsc);
+        case 'department': return compare(+a.departmentName, +b.departmentName, isAsc);
         default: return 0;
       }
     });

@@ -14,6 +14,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { MaterialModule } from './shared/material/material.module';
 import { UserModule } from './user';
 import { reducers } from './store';
+import { AuthModule } from './core/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { reducers } from './store';
     EffectsModule.forRoot([]),
     MaterialModule,
     UserModule,
-    HeaderModule
+    HeaderModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

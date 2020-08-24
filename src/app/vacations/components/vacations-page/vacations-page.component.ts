@@ -1,5 +1,6 @@
 import { Department } from './../../../core/model/department.model';
 import { Vacation } from './../../../core/model/vacation.model';
+import { User } from './../../../core/model/user.model';
 import { BottomSheetAlertComponent } from './../../../shared/material/bottomsheet/bottom-sheet-alert.component';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -31,6 +32,7 @@ export class VacationsPageComponent implements OnInit {
   vacationE$: Observable<any>;
   department$: Observable<Department[]>;
   vacationType$: Observable<VacationType[]>;
+  user$: Observable<User>;
   errorMessage$: Observable<Error>;
 
   constructor( private store: Store<State>, private _bottomSheet: MatBottomSheet ) {

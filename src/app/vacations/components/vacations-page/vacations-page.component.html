@@ -2,23 +2,26 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-3">
-      <button mat-icon-button color="primary">
+      <a mat-icon-button routerLink="/urlopy/moje" color="primary">
         <mat-icon>calendar_today</mat-icon>Zgłaszam urlop
-      </button>
+      </a>
     </div>
     <div class="col-3">
-      <button mat-icon-button color="primary">
+      <a mat-icon-button routerLink="/urlopy/moje" color="primary">
         <mat-icon>calendar_today</mat-icon>Moje urlopy
-      </button>
+      </a>
     </div>
   </div>
 </div>
 <ng-container *ngIf="{ vacationList: vacation$ | async, departmentList: department$ | async, typeList: vacationType$ | async } as vacationDatas; else elseTemplate">
-  <app-vacations-list [departmentList]="vacationDatas.departmentList" [dataList]="vacationDatas.vacationList" [typesList]="vacationDatas.typeList" (delete)="onDelete($event)"></app-vacations-list>
+  <ng-container *ngIf="vacationDatas.vacationList.length > 0">
+    <app-vacations-list [departmentList]="vacationDatas.departmentList" [dataList]="vacationDatas.vacationList" [typesList]="vacationDatas.typeList" (delete)="onDelete($event)"></app-vacations-list>
+  </ng-container>
 </ng-container>
 <ng-template #elseTemplate>
   Brak
 </ng-template>
+
 
 
 

@@ -9,6 +9,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { BottomSheetAlertComponent } from './bottomsheet/bottom-sheet-alert.component';
 import { MatTableModule } from '@angular/material/table';
@@ -39,7 +40,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule
   ]
 })
 export class MaterialModule { }

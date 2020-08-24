@@ -20,10 +20,6 @@ export class DepartmentEffects {
     this.actions$.pipe(
       ofType(DepartmentActions.enterDepartments),
       exhaustMap( () => this.dataDepartmentService.getDepartments().pipe(
-        tap( val => {
-          console.info("val");
-          console.info(val);
-        } ),
         map( departments =>  DepartmentActions.addDepartments({ departments })),
         catchError( error => of( DepartmentActions.loadDepartmentsFailure({ error }) )
         )

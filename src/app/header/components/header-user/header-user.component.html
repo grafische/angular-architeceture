@@ -1,6 +1,6 @@
 <div class="col-auto">
-  <span>Bartosz Nieckula</span>
+  <span>{{ userData.name }} {{ userData.surname }}</span>
 </div>
 <div class="col-auto">
-  <img src="../../../../assets/user/no_foto.png" alt="">
+  <img [src]="(userData.photoUrl != '')? userData.photoUrl : '../../../../assets/user/no_foto.png'" alt="">
 </div>

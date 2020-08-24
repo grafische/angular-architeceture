@@ -1,4 +1,5 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, HostBinding, Input } from '@angular/core';
+import { User } from './../../../core/model/user.model';
 
 @Component({
   selector: 'app-header-user',
@@ -8,6 +9,7 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 export class HeaderUserComponent implements OnInit {
 
   @HostBinding('class') className = 'row justify-content-end';
+  @Input('user') userData: User;
 
   constructor() { }
 

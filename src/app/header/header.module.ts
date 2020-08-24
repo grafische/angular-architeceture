@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderPageComponent } from './components/header-page/header-page.component';
@@ -11,7 +12,8 @@ import { HeaderUserComponent } from './components/header-user/header-user.compon
   declarations: [HeaderPageComponent, HeaderListMenuComponent, HeaderUserComponent],
   imports: [
     CommonModule,
-    MaterialModule
+    MaterialModule,
+    RouterModule
   ],
   exports: [HeaderPageComponent, HeaderListMenuComponent]
 })

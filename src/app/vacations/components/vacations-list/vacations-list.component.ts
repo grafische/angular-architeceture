@@ -4,7 +4,7 @@ import { AfterViewInit, Component, OnInit, ViewChild, Input, ChangeDetectionStra
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { VacationsListDataSource, VacationsListItem } from './vacations-list-datasource';
+import { VacationsListDataSource} from './vacations-list-datasource';
 import { filter } from 'rxjs/operators';
 import { VacationType } from 'src/app/core/model/vacation-type.model';
 
@@ -17,36 +17,26 @@ const VACATION_PLANNED: string = "planowany";
   styleUrls: ['./vacations-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class VacationsListComponent implements AfterViewInit, OnInit, OnChanges {
-  @Input() dataList: VacationsListItem[];
+export class VacationsListComponent implements AfterViewInit, OnInit {
+  @Input() dataList: Vacation[];
   @Input() departmentList: Department[];
   @Input() typesList: VacationType[];
 
   @Output() delete = new EventEmitter();
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<VacationsListItem>;
-  //dataSource: VacationsListDataSource = new VacationsListDataSource( [] );
-  dataSource = new MatTableDataSource<Vacation>(this.dataList);
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild(MatTable) table: MatTable<Vacation>;
+
+  dataSource = new MatTableDataSource<Vacation>();
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = [ 'name', 'department', 'date_vacation', 'contact', 'kind', 'remove'];
+  displayedColumns = [ 'employeeName', 'departmentName', 'startDate', 'contact', 'kindAC', 'remove'];
   searchField: string;
   buttonCheckStateAk: boolean = false;
   buttonCheckStatePl: boolean;
 
   ngOnInit() {
-    this.dataSource.data = this.dataList;
-    console.info("this.dataList ngoninit");
-    console.info(this.dataList);
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    console.info("this.dataList ngOnChanges");
-    console.info(changes.dataList);
-    if(changes.dataList && changes.dataList.currentValue.length > 0) {
-      this.dataSource.data = changes.dataList.currentValue;
-    }
+    this.dataSource = new MatTableDataSource<Vacation>(this.dataList);
   }
 
   filterAk():void {
@@ -70,7 +60,6 @@ export class VacationsListComponent implements AfterViewInit, OnInit, OnChanges 
   }
 
   applyFilterAK(value: boolean):void {
-    console.info("applyFilterAK");
     (value)? this.applyFilter(VACATION_CURRENT) : this.applyFilter('');
   }
 
@@ -80,7 +69,6 @@ export class VacationsListComponent implements AfterViewInit, OnInit, OnChanges 
 
   applyFilter(value: string) {
     const filterValue = value;
-    console.info("applyFilter send");
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
@@ -95,8 +83,54 @@ export class VacationsListComponent implements AfterViewInit, OnInit, OnChanges 
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    this.dataSource.sort = this.sort;
+    //this.table.dataSource = this.dataSource;
   }
 }
+
+
+export interface PeriodicElement {
+  employeeName: string;
+  weight: number;
+  symbol: string;
+}
+
+const ELEMENT_DATA2: PeriodicElement[] = [
+  { employeeName: 'Hydrogen DS', weight: 1.0079, symbol: 'H'},
+  { employeeName: 'Helium sas', weight: 4.0026, symbol: 'He'},
+  {employeeName: 'Lithium asdsad', weight: 6.941, symbol: 'Li'},
+  { employeeName: 'Beryllium adas', weight: 9.0122, symbol: 'Be'},
+  { employeeName: 'Boron sadas', weight: 10.811, symbol: 'B'},
+];
+
+const ELEMENT_DATA: Vacation[] = [
+  {
+    leaveId: 37744,
+    employeeId: 185,
+    employeeName: 'Natalia Knapik',
+    employeeLogin: 'natalia',
+    leaveTypeId: 4,
+    startDate: new Date(),
+    endDate: new Date(),
+    contact: '',
+    remarks: null,
+    departmentId: 35,
+    departmentName: 'Dział reklamy i promocji',
+    kindAC: 'aktualny'
+  },
+  {
+    leaveId: 42478,
+    employeeId: 162,
+    employeeName: 'Aleksandra Machalska',
+    employeeLogin: 'aleksandra',
+    leaveTypeId: 4,
+    startDate: new Date(),
+    endDate: new Date(),
+    contact: '',
+    remarks: null,
+    departmentId: 2,
+    departmentName: 'Dział handlowy i sekretariat',
+    kindAC: 'aktualny'
+  },
+];

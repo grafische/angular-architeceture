@@ -27,7 +27,7 @@ export const initialState: State = adapter.getInitialState({
 
 export const reducer = createReducer(
   initialState,
-  on(VacationActions.addVacation,
+  on(VacationActions.addVacationSuccess,
     (state, action) => adapter.addOne(action.vacation, state)
   ),
   on(VacationActions.upsertVacation,

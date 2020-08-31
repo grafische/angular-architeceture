@@ -1,3 +1,5 @@
+import { TypeMessage } from './../../../core/model/bottom-message.model';
+import { DepartmentUser } from './../../../core/model/department-user.model';
 import { Department } from './../../../core/model/department.model';
 import { Vacation } from './../../../core/model/vacation.model';
 import { User } from './../../../core/model/user.model';
@@ -9,10 +11,12 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { State } from './../../../store';
 import * as SelectorsVacation from '../../../store/selectors/vacation.selectors';
 import * as SelectorsDepartment from '../../../store/selectors/department.selectors';
+import * as SelectorsDepartmentUsers from '../../../store/selectors/department-user.selectors';
 import * as SelectorsVacationType from '../../../store/selectors/vacation-type.selectors';
 
 import * as VacationAction from '../../../store/actions/vacation.actions';
 import * as DepartmentAction from '../../../store/actions/department.actions';
+import * as DepartmentUsersAction from '../../../store/actions/department-user.actions';
 import * as VacationTypeAction from '../../../store/actions/vacation-type.actions';
 
 import { tap } from 'rxjs/operators';
@@ -31,6 +35,7 @@ export class VacationsPageComponent implements OnInit {
   vacationId$: Observable<string[] | number[] >;
   vacationE$: Observable<any>;
   department$: Observable<Department[]>;
+  departmentUsers$: Observable<DepartmentUser[]>;
   vacationType$: Observable<VacationType[]>;
   user$: Observable<User>;
   errorMessage$: Observable<Error>;
@@ -38,12 +43,15 @@ export class VacationsPageComponent implements OnInit {
   constructor( private store: Store<State>, private _bottomSheet: MatBottomSheet ) {
     this.vacation$ = store.select(SelectorsVacation.selectAllVacation);
     this.department$ = store.select(SelectorsDepartment.selectAllDepartment);
+    this.departmentUsers$ = store.select(SelectorsDepartmentUsers.selectAllDepartmentUser);
     this.vacationType$ = store.select(SelectorsVacationType.selectAllVacationType);
     this.errorMessage$ = store.select(SelectorsVacation.getErrorVacation).pipe(
       tap(
         val => {
           if( val != null ) {  this._bottomSheet.open(BottomSheetAlertComponent, {
-            data: { message: val.message },
+            data: {
+              type: TypeMessage.Error,
+              message: val.message },
             panelClass: "alert-error"
           });
           }
@@ -53,9 +61,10 @@ export class VacationsPageComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.store.dispatch(VacationAction.enterVacations());
-    this.store.dispatch(DepartmentAction.enterDepartments());
-    this.store.dispatch(VacationTypeAction.enterVacationTypes());
+    // this.store.dispatch(VacationAction.enterVacations());
+    // this.store.dispatch(DepartmentAction.enterDepartments());
+    // this.store.dispatch(DepartmentUsersAction.enterDepartmentUsers());
+    // this.store.dispatch(VacationTypeAction.enterVacationTypes());
   }
 
   onDelete(vacation: Vacation) {

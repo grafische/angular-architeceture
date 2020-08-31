@@ -1,3 +1,4 @@
+import { PreloaderResolver } from './vacations/resolver/preloader.resolver';
 import { AuthGuard } from './core/auth/guard/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -15,7 +16,8 @@ const routes: Routes = [
   },
   { path: 'urlopy',
   loadChildren: () => import('./vacations/vacations.module').then(m => m.VacationsModule),
-  canActivate: [AuthGuard]
+  canActivate: [AuthGuard],
+  resolve: { data: PreloaderResolver }
 },
 { path: 'login', component: LoginPageComponent },
 ];

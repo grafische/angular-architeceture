@@ -1,3 +1,4 @@
+import { DepartmentUserEffects } from './../store/effects/department-user.effects';
 import { VacationTypeEffects } from './../store/effects/vacation-type.effects';
 import { MaterialModule } from './../shared/material/material.module';
 import { NgModule } from '@angular/core';
@@ -9,23 +10,19 @@ import { EffectsModule } from '@ngrx/effects';
 import { VacationEffects } from '../store/effects/vacation.effects';
 import { VacationsListComponent } from './components/vacations-list/vacations-list.component';
 import { DepartmentEffects } from '../store/effects/department.effects';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MyVacationsPageComponent } from './components/my-vacations-page/my-vacations-page.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
+import { VacationsFormComponent } from './components/vacations-form/vacations-form.component';
 
 @NgModule({
-  declarations: [VacationsPageComponent, VacationsListComponent, MyVacationsPageComponent],
+  declarations: [VacationsPageComponent, VacationsListComponent, MyVacationsPageComponent, VacationsFormComponent],
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     VacationsRoutingModule,
-    EffectsModule.forFeature([VacationEffects, DepartmentEffects, VacationTypeEffects]),
-    MaterialModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule
+    EffectsModule.forFeature([VacationEffects, DepartmentEffects, DepartmentUserEffects, VacationTypeEffects]),
+    MaterialModule
   ]
 })
 export class VacationsModule { }

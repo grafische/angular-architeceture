@@ -5,6 +5,7 @@ import * as fromVacations from './reducers/vacation.reducer';
 import * as fromDepartments from './reducers/department.reducer';
 import * as fromVacationTypes from './reducers/vacation-type.reducer';
 import * as fromAuths from './reducers/auth.reducer';
+import * as fromDepartmentUsers from './reducers/department-user.reducer';
 
 export * from './actions';
 export * from './services';
@@ -14,6 +15,7 @@ export interface State {
   users: fromUser.State;
   vacations: fromVacations.State;
   departments: fromDepartments.State;
+  departmentUsers: fromDepartmentUsers.State;
   vacationTypes: fromVacationTypes.State;
   auths: fromAuths.State;
 }
@@ -22,6 +24,7 @@ export const reducers: ActionReducerMap<State> = {
   users: fromUser.reducer,
   vacations: fromVacations.reducer,
   departments: fromDepartments.reducer,
+  departmentUsers: fromDepartmentUsers.reducer,
   vacationTypes: fromVacationTypes.reducer,
   auths: fromAuths.reducer
 };

@@ -1,3 +1,4 @@
+import { VacationsFormComponent } from './components/vacations-form/vacations-form.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -6,7 +7,8 @@ import { MyVacationsPageComponent } from './components/my-vacations-page/my-vaca
 
 const routes: Routes = [
   { path: '', component: VacationsPageComponent },
-  { path: 'moje', component: MyVacationsPageComponent }
+  { path: 'moje', component: MyVacationsPageComponent },
+  { path: 'zgloszenie_urlopu', component: VacationsFormComponent }
 ];
 
 @NgModule({

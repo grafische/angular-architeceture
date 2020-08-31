@@ -1,3 +1,4 @@
+import { BottomMessage } from './../../../core/model/bottom-message.model';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 
@@ -8,7 +9,7 @@ import { MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 })
 export class BottomSheetAlertComponent implements OnInit {
 
-  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: any) { }
+  constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: BottomMessage) { }
 
   ngOnInit(): void {
   }

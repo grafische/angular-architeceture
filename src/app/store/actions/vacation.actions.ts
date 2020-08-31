@@ -12,6 +12,16 @@ export const loadVacations = createAction(
   props<{ vacations: Vacation[] }>()
 );
 
+export const addVacationSuccess = createAction(
+  '[Vacation/API] Add Vacation Success',
+  props<{ vacation: Vacation }>()
+);
+
+export const addVacationFailure = createAction(
+  '[Vacation/API] Add Vacation Failure',
+  props<{ error }>()
+);
+
 export const addVacation = createAction(
   '[Vacation/API] Add Vacation',
   props<{ vacation: Vacation }>()

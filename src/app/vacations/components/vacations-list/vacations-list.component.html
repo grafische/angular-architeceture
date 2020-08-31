@@ -63,7 +63,7 @@
           <!-- Date_vacation Column -->
           <ng-container matColumnDef="startDate">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Daty urlopów</th>
-            <td mat-cell *matCellDef="let row">{{row.startDate}} - {{row.endDate}}</td>
+            <td mat-cell *matCellDef="let row">{{row.startDate | date:"MM-dd-yy" }} - {{row.endDate | date:"MM-dd-yy"}}</td>
           </ng-container>
 
           <!-- Contact Column -->

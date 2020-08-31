@@ -29,6 +29,10 @@ export class DataVacationService {
     //http://127.0.0.1:8887/leave.json
   }
 
+  create( value: Vacation) {
+    return this.http.post<Vacation>(`${this.apiUrlBase}api/leave`, value);
+  }
+
   delete(id: number) {
     return this.http.delete(`${this.apiUrlBase}api/leave/${id}`);
   }

@@ -1,1 +1,13 @@
-<p>{{ data.message }}</p>
+<ng-container *ngIf="data.type == 'SUCCESS'">
+  <div class="alert alert-success" role="alert">
+    {{ data.message }}
+  </div>
+</ng-container>
+<ng-container *ngIf="data.type == 'ERROR'">
+  <div class="alert alert-danger" role="alert">
+    {{ data.message }}
+  </div>
+</ng-container>
+
+
+

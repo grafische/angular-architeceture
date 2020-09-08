@@ -1,6 +1,6 @@
 import { Message } from './../../../core/model/message.enum';
 import { Department } from './../../../core/model/department.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -15,6 +15,7 @@ import * as SelectorsUser from '../../../store/selectors/auth.selectors';
 import * as VacationAction from '../../../store/actions/vacation.actions';
 import * as DepartmentAction from '../../../store/actions/department.actions';
 import * as DepartmentUsersAction from '../../../store/actions/department-user.actions';
+import * as DepartmentOwnAction from '../../../store/actions/department-own.actions';
 import * as VacationTypeAction from '../../../store/actions/vacation-type.actions';
 
 import { VacationType } from './../../../core/model/vacation-type.model';
@@ -22,6 +23,7 @@ import { DepartmentUser } from './../../../core/model/department-user.model';
 import { User } from './../../../core/model/user.model';
 import { tap } from 'rxjs/operators';
 import { Vacation } from 'src/app/core/model/vacation.model';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-vacations-form',
@@ -30,13 +32,16 @@ import { Vacation } from 'src/app/core/model/vacation.model';
 })
 export class VacationsFormComponent implements OnInit {
 
+  @ViewChild('stepper') private myStepper: MatStepper;
   department$: Observable<Department[]>;
   departmentUsers$: Observable<DepartmentUser[]>;
   departmentUser$: Observable<DepartmentUser[]>;
   vacationType$: Observable<VacationType[]>;
+  vacationAddStaus$: Observable<boolean>;
   user$: Observable<User>;
-  messageErrorAsync: Message = Message.AsyncError;
-  isEditable: boolean = false;
+  error$: Observable<any>;
+  message = Message;
+  isEditable: boolean = true;
 
   vacationForm_first = this.fb.group({
     contact: [null],
@@ -49,7 +54,8 @@ export class VacationsFormComponent implements OnInit {
     startDate: [null, Validators.required],
     leaveId: [null],
     leaveTypeId: [null, Validators.required],
-    remarks: [null]
+    remarks: [null],
+    years: [null]
   });
 
   vacationForm_second = this.fb.group({
@@ -68,6 +74,8 @@ export class VacationsFormComponent implements OnInit {
     this.department$ = this.store.select(SelectorsDepartment.selectAllDepartment);
     this.departmentUsers$ = this.store.select(SelectorsDepartmentUsers.selectAllDepartmentUser);
     this.departmentUser$ = this.store.select(SelectorsDepartmentUsers.selectOneDepartmentUser, {id: 2});
+    this.vacationAddStaus$ = this.store.select(SelectorsVacation.selectGettingAddVacationStatus);
+    this.error$ = this.store.select(SelectorsVacation.getErrorVacation);
     this.user$ = this.store.select(SelectorsUser.selectAuthUser).pipe(
       tap(
         val => {
@@ -83,7 +91,6 @@ export class VacationsFormComponent implements OnInit {
   }
 
   changeDepartment( ev: any): void {
-    console.info("changeDepartment");
     this.vacationForm_first.patchValue( { departmentName:  ev.source.selected.viewValue } )
   }
 
@@ -97,9 +104,20 @@ export class VacationsFormComponent implements OnInit {
     )[0];
   }
 
+  getYears( d: Date ) {
+    return new Date(d).getFullYear();
+  }
+
   onSubmit():void {
+    this.vacationForm_first.patchValue({ years: new Date(this.vacationForm_first.get('startDate').value).getFullYear() })
     const data: Vacation = this.vacationForm_first.value;
     this.store.dispatch(VacationAction.addVacation({vacation: data}));
+    this.myStepper.next();
+    this.isEditable = false;
+    //data.years = new Date(data.startDate).getFullYear();
+    //this.store.dispatch(DepartmentOwnAction.addDepartmentOwn({vacation: data}));
+    //this.store.dispatch(VacationAction.enterVacations());
+    //this.store.dispatch(DepartmentOwnAction.enterDepartmentOwns());
   }
 
   filterDepartmentName( id: number ): Observable<DepartmentUser> {

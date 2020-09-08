@@ -1,0 +1,37 @@
+<mat-form-field appearance="fill" class="full-width">
+  <mat-select [placeholder]="message.ChooseType" value="0" #select name="item">
+    <mat-option value="0">{{ message.AllType }}</mat-option>
+    <mat-option *ngFor="let item of type" [value]="item.id">
+      {{item.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<table mat-table [dataSource]="list" class="full-width">
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Imię i nazwisko </th>
+    <td mat-cell justify="end" *matCellDef="let element">
+      <mat-list>
+        <mat-list-item>{{element.fullName}}</mat-list-item>
+        <mat-list-item>{{element.position}}</mat-list-item>
+      </mat-list>
+    </td>
+  </ng-container>
+
+  <!-- Data Column -->
+  <ng-container matColumnDef="data">
+    <th mat-header-cell *matHeaderCellDef> Daty urlopów </th>
+    <td mat-cell class="cell cell--border-left" *matCellDef="let element">
+      <ng-container *ngFor="let item of element.leaves">
+        <span *ngIf="select.value == 0">{{item.startDate | date:"MM-dd-yy" }} - {{item.endDate | date:"MM-dd-yy"}}
+          {{ item.leaveTypeName }}<br /></span>
+        <span *ngIf="select.value == item.leaveTypeId">{{item.startDate | date:"MM-dd-yy" }} -
+          {{item.endDate | date:"MM-dd-yy"}} {{ item.leaveTypeName }}<br /></span>
+      </ng-container>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

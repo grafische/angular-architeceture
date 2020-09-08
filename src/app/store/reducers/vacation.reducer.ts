@@ -7,6 +7,7 @@ export const vacationsFeatureKey = 'vacations';
 
 export interface State extends EntityState<Vacation> {
   // additional entities state properties
+  gettingStatus: boolean,
   error: Error;
 }
 
@@ -21,6 +22,7 @@ export const adapter: EntityAdapter<Vacation> = createEntityAdapter<Vacation>({
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties
+  gettingStatus: false,
   error: null,
 });
 
@@ -28,13 +30,29 @@ export const initialState: State = adapter.getInitialState({
 export const reducer = createReducer(
   initialState,
   on(VacationActions.addVacationSuccess,
-    (state, action) => adapter.addOne(action.vacation, state)
+    (state, action) => {
+      if(!action.vacation.isSentToEmployee || !action.vacation.isSentToSuperior) {
+        return adapter.addOne(action.vacation, { ...state, gettingStatus: false, error: {
+          isSentToEmployee: action.vacation.isSentToEmployee,
+          isSentToSuperior:  action.vacation.isSentToSuperior,
+          isSentToHR: action.vacation.isSentToHR
+        }
+      });
+      }
+      return adapter.addOne(action.vacation, { ...state, gettingStatus: false, error: null})
+    }
+  ),
+  on(VacationActions.addVacationFailure,
+    (state, action) => adapter.getInitialState({ ...state, gettingStatus: false, error: action.error })
   ),
   on(VacationActions.upsertVacation,
     (state, action) => adapter.upsertOne(action.vacation, state)
   ),
   on(VacationActions.addVacations,
-    (state, action) => adapter.addMany(action.vacations, state)
+    (state, action) => adapter.addMany(action.vacations, { ...state, gettingStatus: true})
+  ),
+  on(VacationActions.addVacation,
+    (state, action) => adapter.getInitialState({ ...state, gettingStatus: true})
   ),
   on(VacationActions.upsertVacations,
     (state, action) => adapter.upsertMany(action.vacations, state)
@@ -59,6 +77,7 @@ export const reducer = createReducer(
   ),
 );
 
+//export const selectGettingStatus = (state: State) => state.gettingStatus;
 
 export const {
   selectIds,

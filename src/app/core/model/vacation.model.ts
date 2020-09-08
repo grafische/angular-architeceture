@@ -11,4 +11,9 @@ export interface Vacation {
   departmentId: number;
   departmentName: string;
   kindAC?: string;
+  years?: number;
+  leaveTypeName?: string;
+  isSentToEmployee?: boolean;
+  isSentToHR?: boolean;
+  isSentToSuperior?: boolean;
 }

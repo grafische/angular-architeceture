@@ -20,7 +20,7 @@ export class DepartmentUserEffects {
     this.actions$.pipe(
       ofType(DepartmentUserActions.enterDepartmentUsers),
       exhaustMap( () => this.datadepartmentUserService.getDepartmentUsers().pipe(
-        map( departmentUsers =>  DepartmentUserActions.addDepartmentUsers({ departmentUsers })),
+        map( departmentUsers =>  DepartmentUserActions.loadDepartmentUsers({ departmentUsers })),
         catchError( error => of( DepartmentUserActions.loadDepartmentUsersFailure({ error }) )
         )
       ))

@@ -3,16 +3,15 @@ import { DepartmentUser } from './../../../core/model/department-user.model';
 import { Department } from './../../../core/model/department.model';
 import { Vacation } from './../../../core/model/vacation.model';
 import { User } from './../../../core/model/user.model';
-import { BottomSheetAlertComponent } from './../../../shared/material/bottomsheet/bottom-sheet-alert.component';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { MatBottomSheet } from '@angular/material/bottom-sheet';
 
 import { State } from './../../../store';
 import * as SelectorsVacation from '../../../store/selectors/vacation.selectors';
 import * as SelectorsDepartment from '../../../store/selectors/department.selectors';
 import * as SelectorsDepartmentUsers from '../../../store/selectors/department-user.selectors';
 import * as SelectorsVacationType from '../../../store/selectors/vacation-type.selectors';
+import * as SelectorsUser from '../../../store/selectors/auth.selectors';
 
 import * as VacationAction from '../../../store/actions/vacation.actions';
 import * as DepartmentAction from '../../../store/actions/department.actions';
@@ -38,27 +37,14 @@ export class VacationsPageComponent implements OnInit {
   departmentUsers$: Observable<DepartmentUser[]>;
   vacationType$: Observable<VacationType[]>;
   user$: Observable<User>;
-  errorMessage$: Observable<Error>;
 
-  constructor( private store: Store<State>, private _bottomSheet: MatBottomSheet ) {
+  constructor( private store: Store<State> ) {
     this.vacation$ = store.select(SelectorsVacation.selectAllVacation);
     this.department$ = store.select(SelectorsDepartment.selectAllDepartment);
     this.departmentUsers$ = store.select(SelectorsDepartmentUsers.selectAllDepartmentUser);
     this.vacationType$ = store.select(SelectorsVacationType.selectAllVacationType);
-    this.errorMessage$ = store.select(SelectorsVacation.getErrorVacation).pipe(
-      tap(
-        val => {
-          if( val != null ) {  this._bottomSheet.open(BottomSheetAlertComponent, {
-            data: {
-              type: TypeMessage.Error,
-              message: val.message },
-            panelClass: "alert-error"
-          });
-          }
-        }
-      )
-    );
-   }
+    this.user$ = store.select(SelectorsUser.selectAuthUser);
+  }
 
   ngOnInit(): void {
     // this.store.dispatch(VacationAction.enterVacations());

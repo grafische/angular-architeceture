@@ -1,1 +1,72 @@
-<p>my-vacations-page works!</p>
+<ng-container *ngIf="{ departmentOwnList: departmentOwn$ | async, typeList: vacationType$ | async } as vacationDatas">
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-12">
+        <table mat-table #table
+          [dataSource]="vacationDatas.departmentOwnList | transformDepartmentOwn:vacationDatas.typeList:'summary'">
+
+          <!-- Rok Column -->
+          <ng-container matColumnDef="rok">
+            <th mat-header-cell *matHeaderCellDef> Rok </th>
+            <td mat-cell *matCellDef="let row"> {{row.rok}} </td>
+          </ng-container>
+
+          <!-- prywatne Column -->
+          <ng-container matColumnDef="prywatne">
+            <th mat-header-cell *matHeaderCellDef> Prywatne </th>
+            <td mat-cell *matCellDef="let row"> {{row.prywatne}} </td>
+          </ng-container>
+
+          <!-- sluzbowe Column -->
+          <ng-container matColumnDef="sluzbowe">
+            <th mat-header-cell *matHeaderCellDef> Służbowe </th>
+            <td mat-cell *matCellDef="let row"> {{row.sluzbowe}} </td>
+          </ng-container>
+
+          <!-- choroby Column -->
+          <ng-container matColumnDef="choroby">
+            <th mat-header-cell *matHeaderCellDef> Choroby </th>
+            <td mat-cell *matCellDef="let row"> {{row.choroby}} </td>
+          </ng-container>
+
+          <!-- inne Column -->
+          <ng-container matColumnDef="inne">
+            <th mat-header-cell *matHeaderCellDef> Inne </th>
+            <td mat-cell *matCellDef="let row"> {{row.inne}} </td>
+          </ng-container>
+
+          <!-- Total Column -->
+          <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef> Razem </th>
+            <td mat-cell *matCellDef="let row"> {{row.total}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsSummary"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsSummary;"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngFor="let item of vacationDatas.departmentOwnList | transformDepartmentOwn:vacationDatas.typeList">
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-4">
+          <table mat-table #table [dataSource]="item.data">
+            <!-- Rok Column -->
+            <ng-container matColumnDef="details">
+              <th mat-header-cell *matHeaderCellDef> {{ item.years }} </th>
+              <td mat-cell *matCellDef="let row">
+                {{row.startDate | date:"MM-dd-yy" }} - {{row.endDate | date:"MM-dd-yy" }}
+                ({{ row.leaveTypeId | nameTypeLeave:vacationDatas.typeList  }})<br />
+                {{ row.remarks }}
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsYears"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsYears;"></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>

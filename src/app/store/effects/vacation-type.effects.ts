@@ -20,7 +20,7 @@ export class VacationTypeEffects {
     this.actions$.pipe(
       ofType(VacationTypeActions.enterVacationTypes),
       exhaustMap( () => this.datavacationTypeService.getVacationTypes().pipe(
-        map( vacationTypes =>  VacationTypeActions.addVacationTypes({ vacationTypes })),
+        map( vacationTypes =>  VacationTypeActions.loadVacationTypes({ vacationTypes })),
         catchError( error => of( VacationTypeActions.loadVacationTypesFailure({ error }) )
         )
       ))

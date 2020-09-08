@@ -2,8 +2,8 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <mat-horizontal-stepper linear>
-          <mat-step [stepControl]="vacationForm_first" label="Zgłoszenie urlopu">
+        <mat-horizontal-stepper #stepper linear>
+          <mat-step [stepControl]="vacationForm_first" [editable]="isEditable" label="Zgłoszenie urlopu">
             <form [formGroup]="vacationForm_first" novalidate (ngSubmit)="onSubmit()">
               <mat-card class="shipping-card">
                 <mat-card-header>
@@ -89,6 +89,7 @@
                       </div>
                     </div>
                   </div>
+                  <input type="hidden" formControlName="years">
                 </mat-card-content>
                 <mat-card-actions>
                   <div class="container">
@@ -104,7 +105,7 @@
               </mat-card>
             </form>
           </mat-step>
-          <mat-step [stepControl]="vacationForm_second" label="Potwierdzenie">
+          <mat-step [stepControl]="vacationForm_second" [editable]="isEditable"  label="Potwierdzenie">
             <mat-card class="shipping-card">
               <mat-card-header>
                 <mat-card-title>Zgłoszenie urlopu</mat-card-title>
@@ -180,13 +181,66 @@
               </mat-card-content>
               <mat-card-actions>
                 <button mat-raised-button matStepperPrevious>Powrót</button>
-                <button mat-raised-button color="primary" [disabled]="vacationForm_second.get('notification_boss').value == 'true'? false: true" (click)="onSubmit()" >Wyślij</button>
+
+
+                <ng-container *ngIf="vacationForm_second.get('notification_boss').value == 'true'">
+                  <button mat-raised-button color="primary" [disabled]="vacationAddStaus$ | async" (click)="onSubmit()" >Wyślij</button>
+                </ng-container>
+
+                <ng-container *ngIf="vacationForm_second.get('notification_boss').value == 'false'">
+                  <button mat-raised-button color="primary" [disabled]="true" (click)="onSubmit()" >Wyślij</button>
+                </ng-container>
+
+                 <ng-container *ngIf="vacationAddStaus$ | async">
+                  <mat-spinner diameter="18"></mat-spinner>
+                 </ng-container>
               </mat-card-actions>
               <mat-card-footer>
               </mat-card-footer>
             </mat-card>
-
-
+          </mat-step>
+          <mat-step label="Status">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>Podsumowanie</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <ng-container *ngIf="error$ | async as Error;else success">
+                  <ng-container  *ngIf="Error != null">
+                    <ng-container  *ngIf="Error.status == 500">
+                      <div class="alert alert-warning" role="alert">
+                        {{ message.FormError }}
+                      </div>
+                    </ng-container>
+                    <ng-container  *ngIf="!Error.isSentToEmployee || !Error.isSentToSuperio">
+                      <div class="alert alert-secondary" role="alert">
+                        {{ message.FormSuccess }}
+                      </div>
+                    </ng-container>
+                    <ng-container  *ngIf="!Error.isSentToEmployee">
+                      <div class="alert alert-warning" role="alert">
+                        {{ message.FormErrorNotSendEmploye }}
+                      </div>
+                    </ng-container>
+                    <ng-container  *ngIf="!Error.isSentToSuperior">
+                      <div class="alert alert-warning" role="alert">
+                        {{ message.FormErrorNotSendSuperior }}
+                      </div>
+                    </ng-container>
+                    <ng-container  *ngIf="!Error.isSentToHR">
+                      <div class="alert alert-warning" role="alert">
+                        {{ message.FormErrorNotSendHR }}
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                </ng-container>
+                <ng-template #success>
+                  <div class="alert alert-success" role="alert">
+                  {{ message.FormSuccess }}
+                  </div>
+                </ng-template>
+              </mat-card-content>
+            </mat-card>
           </mat-step>
         </mat-horizontal-stepper>
 
@@ -195,5 +249,5 @@
   </div>
 </ng-container>
 <ng-template #elseTemplate>
-  {{ messageErrorAsync }}
+  {{ message.AsyncError }}
 </ng-template>

@@ -1,10 +1,10 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
-
+import { CommonModule } from '@angular/common';
 
 @NgModule({
-  imports: [ HttpClientModule ],
+  imports: [ HttpClientModule, CommonModule ],
+  exports: [ CommonModule ],
   declarations: [],
   providers: []
 })

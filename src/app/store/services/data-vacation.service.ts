@@ -25,8 +25,7 @@ export class DataVacationService {
         });
         return val;
       })
-    ); //
-    //http://127.0.0.1:8887/leave.json
+    );
   }
 
   create( value: Vacation) {

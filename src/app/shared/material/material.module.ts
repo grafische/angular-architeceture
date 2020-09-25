@@ -55,17 +55,3 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
   ]
 })
 export class MaterialModule { }
-
-
-/*    MatNativeDateModule,
-    StoreModule.forRoot(reducers),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([]),
-    MaterialModule,
-    UserModule,
-    HeaderModule,
-    AuthModule
-  ],
-  providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'pl-PL'},
-  ], */

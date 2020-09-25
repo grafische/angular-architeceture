@@ -20,12 +20,6 @@ export class SmapleEffects {
     );
   });
 
-//  mergeMap(() =>
-//         this.smapleSv.getUser().pipe(
-//           map(smaples => SmapleActions.loadSmaples({ smaples })),
-//           catchError(() => EMPTY)
-//       ))
-
   constructor(private actions$: Actions, private smapleSv: SmapleService ) {}
 
 }

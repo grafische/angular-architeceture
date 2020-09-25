@@ -13,7 +13,6 @@ export class DataDepartmentService {
   constructor( private http: HttpClient ) { }
 
   getDepartments() {
-    return this.http.get<Department[]>(`${this.apiUrlBase}api/departments/names`); //`${this.apiUrlBase}api/departments/names`
-    //http://127.0.0.1:8887/department.json
+    return this.http.get<Department[]>(`${this.apiUrlBase}api/departments/names`);
   }
 }

@@ -24,7 +24,6 @@ export class DataUserService {
     return (res: HttpErrorResponse) => {
       const error = new DataServiceError(res.error, requestData);
       console.error(error);
-      // return new ErrorObservable(error);
       return throwError(error);
     };
   }

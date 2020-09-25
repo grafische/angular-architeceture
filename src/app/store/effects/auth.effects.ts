@@ -3,7 +3,6 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { exhaustMap, map, catchError, tap, concatMap } from 'rxjs/operators';
 
 import { DataAuthService } from './../services/data-auth.service';
-//import * as AuthActions from '../actions/Auth.actions';
 import * as AuthActions from '../actions/auth.actions';
 import { of } from 'rxjs';
 import { Router } from '@angular/router';

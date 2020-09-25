@@ -60,29 +60,6 @@ export class VacationEffects {
     )
   );
 
-  // addVacation$ = createEffect(() =>
-  //   this.actions$.pipe(
-  //     ofType(VacationActions.addVacation),
-  //     withLatestFrom(this.store.pipe(select(SelectorsDepartmentOwn.selectAllDepartmentOwn))),
-  //     concatMap( ([action, department]) => this.dataVacationService.create(action.vacation).pipe(
-  //        map( vacation => {
-  //           if(vacation) {
-  //             this.bottomSheetSucces( Message.FormSuccess );
-  //           }
-  //           const upadate:Update<DepartmentOwn> = {
-  //             id:
-  //           };
-  //           DepartmentOwnActions.updateDepartmentOwn({ department });
-
-  //           return VacationActions.addVacationSuccess( { vacation } )
-  //         } ),
-  //       catchError( error => {
-  //         this.bottomSheetError( Message.FormError );
-  //         return of( VacationActions.addVacationFailure({ error }) )
-  //       })
-  //     ))
-  //   )
-  // );
   addVacation$ = createEffect(() =>
     this.actions$.pipe(
       ofType(VacationActions.addVacation),
@@ -91,41 +68,19 @@ export class VacationEffects {
          map( vacation => {
            const currentDate: Date = new Date();
            if(vacation) {
-             //this.bottomSheetSucces( Message.FormSuccess );
              const current = (new Date(vacation.startDate).getTime() <= currentDate.getTime() && new Date(vacation.endDate).getTime() >= new Date(vacation.endDate).getTime())? 'aktualny' : 'planowany';
              vacation.kindAC = current;
              vacation.years = new Date(vacation.startDate).getFullYear();
             }
-
-              return vacation;
-            //return vacation;
-            //this.store.dispatch(DepartmentOwnActions.addDepartmentOwn({vacation: data}));
+            return vacation;
           } ),
           mergeMap( vacation => [DepartmentOwnAction.addDepartmentOwn({ vacation }), VacationActions.addVacationSuccess( { vacation } )]),
-          //concatMap( vacation => VacationActions.addVacationSuccess( { vacation } ), DepartmentOwnActions.addDepartmentOwn({ vacation }))),
           catchError( error => {
-          //this.bottomSheetError( Message.FormError );
           return of( VacationActions.addVacationFailure({ error }) )
         }),
-        //concatMap( vacation => { DepartmentOwnActions.updateDepartmentOwn({ vacation })})
       )),
-      // concatMap( action => {
-      //   if( action.length )
-      // })
     )
   );
-
-  // addVacationSuccess$ = createEffect(
-  //   () =>
-  //     this.actions$.pipe(
-  //       ofType(VacationActions.addVacationSuccess),
-  //       tap( action  => {
-  //         console.info(" wyk addVacationSuccess");
-  //         this.store.dispatch(DepartmentOwnActions.addDepartmentOwn({vacation: data}));
-  //       })
-  //     ),
-  //   { dispatch: false }
-  // );
 
   bottomSheetSucces( _message: Message ): void {
     this._bottomSheet.open(BottomSheetAlertComponent, {

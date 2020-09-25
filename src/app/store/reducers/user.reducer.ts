@@ -1,7 +1,7 @@
-//import { selectOneUser } from './../selectors/user.selectors';
-import { User } from './../../core/model/user';
 import { Action, createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityState, EntityAdapter } from '@ngrx/entity';
+
+import { User } from './../../core/model/user';
 
 import * as UserActions from '../actions';
 

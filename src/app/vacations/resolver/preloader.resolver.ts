@@ -92,17 +92,5 @@ export class PreloaderResolver implements Resolve<any> {
       this.departmentOwns$,
       this.vacationType$
       )
-
-    // return this.store.pipe(
-    //   select(SelectorsVacation.selectAllVacation),
-    //   tap(loaded => {
-    //     if (loaded.length == 0) {
-    //       console.info(loaded.length);
-    //       console.info("loaded.length");
-    //       this.store.dispatch(VacationTypeAction.enterVacationTypes());
-    //     }
-    //   }),
-    //   first()
-    //   );
   }
 }

@@ -1,4 +1,5 @@
-<ng-container *ngIf="{ userList: user$ | async, departmentList: department$ | async, typeList: vacationType$ | async } as formDatas; else elseTemplate">
+<ng-container
+  *ngIf="{ userList: user$ | async, departmentList: department$ | async, typeList: vacationType$ | async } as formDatas; else elseTemplate">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -14,8 +15,10 @@
                     <div class="row">
                       <div class="col-12">
                         <mat-form-field class="full-width">
-                          <mat-select (selectionChange)="changeDepartment( $event )" placeholder="Dział:" [(value)]="formDatas.userList.departmentId" formControlName="departmentId" #department>
-                            <mat-option *ngFor="let department of formDatas.departmentList" [id]="department.name" [value]="department.id">
+                          <mat-select (selectionChange)="changeDepartment( $event )" placeholder="Dział:"
+                            [(value)]="formDatas.userList.departmentId" formControlName="departmentId" #department>
+                            <mat-option *ngFor="let department of formDatas.departmentList" [id]="department.name"
+                              [value]="department.id">
                               {{ department.name }}
                             </mat-option>
                           </mat-select>
@@ -23,13 +26,14 @@
                             Dział jest <strong>wymagany</strong>
                           </mat-error>
                         </mat-form-field>
-                        <input type="hidden" formControlName="departmentName" >
+                        <input type="hidden" formControlName="departmentName">
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-12">
                         <mat-form-field class="full-width">
-                          <mat-select  (selectionChange)="changeName( $event )" placeholder="Imię i nazwisko:" #userSelect [value]="formDatas.userList.id" formControlName="employeeId">
+                          <mat-select (selectionChange)="changeName( $event )" placeholder="Imię i nazwisko:"
+                            #userSelect [value]="formDatas.userList.id" formControlName="employeeId">
                             <div *ngIf="filterDepartmentName(department.value) | async as users">
                               <mat-option *ngFor="let employer of users?.employees" [value]="employer.id">
                                 {{ employer.name }} {{ employer.surname }}
@@ -47,9 +51,9 @@
                       <div class="col-12">
                         <mat-form-field class="full-width">
                           <mat-select placeholder="Typ:" #typeName formControlName="leaveTypeId">
-                              <mat-option *ngFor="let type of formDatas.typeList" [value]="type.id">
-                                {{ type.name }}
-                              </mat-option>
+                            <mat-option *ngFor="let type of formDatas.typeList" [value]="type.id">
+                              {{ type.name }}
+                            </mat-option>
                           </mat-select>
                           <mat-error *ngIf="vacationForm_first.controls['leaveTypeId'].hasError('required')">
                             Typ jest <strong>wymagany</strong>
@@ -60,7 +64,7 @@
                     <div class="row">
                       <div class="col-12">
                         <mat-form-field class="full-width" appearance="fill">
-                          <mat-label >Data od do</mat-label>
+                          <mat-label>Data od do</mat-label>
                           <mat-date-range-input [formGroup]="vacationForm_first" [rangePicker]="picker">
                             <input matStartDate formControlName="startDate" placeholder="Od">
                             <input matEndDate formControlName="endDate" placeholder="Do">
@@ -68,8 +72,10 @@
                           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                           <mat-date-range-picker #picker></mat-date-range-picker>
 
-                          <mat-error *ngIf="vacationForm_first.controls['startDate'].hasError('matStartDateInvalid')">Invalid start date</mat-error>
-                          <mat-error *ngIf="vacationForm_first.controls['endDate'].hasError('matEndDateInvalid')">Invalid end date</mat-error>
+                          <mat-error *ngIf="vacationForm_first.controls['startDate'].hasError('matStartDateInvalid')">
+                            Invalid start date</mat-error>
+                          <mat-error *ngIf="vacationForm_first.controls['endDate'].hasError('matEndDateInvalid')">
+                            Invalid end date</mat-error>
                         </mat-form-field>
 
                       </div>
@@ -105,7 +111,7 @@
               </mat-card>
             </form>
           </mat-step>
-          <mat-step [stepControl]="vacationForm_second" [editable]="isEditable"  label="Potwierdzenie">
+          <mat-step [stepControl]="vacationForm_second" [editable]="isEditable" label="Potwierdzenie">
             <mat-card class="shipping-card">
               <mat-card-header>
                 <mat-card-title>Zgłoszenie urlopu</mat-card-title>
@@ -141,7 +147,8 @@
                       Data od do
                     </div>
                     <div class="col-6">
-                      {{ vacationForm_first.controls['startDate'].value | date:"MM-dd-yy" }} - {{ vacationForm_first.controls['endDate'].value | date:"MM-dd-yy" }}
+                      {{ vacationForm_first.controls['startDate'].value | date:"MM-dd-yy" }} -
+                      {{ vacationForm_first.controls['endDate'].value | date:"MM-dd-yy" }}
                     </div>
                   </div>
                   <div class="row">
@@ -165,9 +172,10 @@
                 <div class="container mt-4">
                   <div class="row">
                     <div class="col-12">
-                      <form [formGroup]="vacationForm_second" novalidate >
+                      <form [formGroup]="vacationForm_second" novalidate>
                         <label>Czy zgłosiłeś urlop u swojego przełożonego? </label>
-                        <mat-radio-group formControlName="notification_boss" aria-label="Czy zgłosiłeś urlop u swojego przełożonego?">
+                        <mat-radio-group formControlName="notification_boss"
+                          aria-label="Czy zgłosiłeś urlop u swojego przełożonego?">
                           <mat-radio-button value="false">Nie</mat-radio-button>
                           <mat-radio-button value="true">Tak</mat-radio-button>
                         </mat-radio-group>
@@ -184,16 +192,17 @@
 
 
                 <ng-container *ngIf="vacationForm_second.get('notification_boss').value == 'true'">
-                  <button mat-raised-button color="primary" [disabled]="vacationAddStaus$ | async" (click)="onSubmit()" >Wyślij</button>
+                  <button mat-raised-button color="primary" [disabled]="vacationAddStaus$ | async"
+                    (click)="onSubmit()">Wyślij</button>
                 </ng-container>
 
                 <ng-container *ngIf="vacationForm_second.get('notification_boss').value == 'false'">
-                  <button mat-raised-button color="primary" [disabled]="true" (click)="onSubmit()" >Wyślij</button>
+                  <button mat-raised-button color="primary" [disabled]="true" (click)="onSubmit()">Wyślij</button>
                 </ng-container>
 
-                 <ng-container *ngIf="vacationAddStaus$ | async">
+                <ng-container *ngIf="vacationAddStaus$ | async">
                   <mat-spinner diameter="18"></mat-spinner>
-                 </ng-container>
+                </ng-container>
               </mat-card-actions>
               <mat-card-footer>
               </mat-card-footer>
@@ -205,38 +214,44 @@
                 <mat-card-title>Podsumowanie</mat-card-title>
               </mat-card-header>
               <mat-card-content>
-                <ng-container *ngIf="error$ | async as Error;else success">
-                  <ng-container  *ngIf="Error != null">
-                    <ng-container  *ngIf="Error.status == 500">
+                <ng-container *ngIf="error$ | async as ErrorMessage; else success">
+                  <ng-container *ngIf="ErrorMessage != null">
+                    <ng-container *ngIf="ErrorMessage.status == 400 && ErrorMessage.error.status == null">
                       <div class="alert alert-warning" role="alert">
                         {{ message.FormError }}
                       </div>
                     </ng-container>
-                    <ng-container  *ngIf="!Error.isSentToEmployee || !Error.isSentToSuperio">
+                    <ng-container
+                      *ngIf="!ErrorMessage.isSentToEmployee && ErrorMessage.isSentToEmployee != null || !ErrorMessage.isSentToSuperio  && ErrorMessage.isSentToSuperio != null">
                       <div class="alert alert-secondary" role="alert">
                         {{ message.FormSuccess }}
                       </div>
                     </ng-container>
-                    <ng-container  *ngIf="!Error.isSentToEmployee">
+                    <ng-container *ngIf="!ErrorMessage.isSentToEmployee && ErrorMessage.isSentToEmployee != null">
                       <div class="alert alert-warning" role="alert">
                         {{ message.FormErrorNotSendEmploye }}
                       </div>
                     </ng-container>
-                    <ng-container  *ngIf="!Error.isSentToSuperior">
+                    <ng-container *ngIf="!ErrorMessage.isSentToSuperior && ErrorMessage.isSentToSuperior != null">
                       <div class="alert alert-warning" role="alert">
                         {{ message.FormErrorNotSendSuperior }}
                       </div>
                     </ng-container>
-                    <ng-container  *ngIf="!Error.isSentToHR">
+                    <ng-container *ngIf="!ErrorMessage.isSentToHR  && ErrorMessage.isSentToHR != null">
                       <div class="alert alert-warning" role="alert">
                         {{ message.FormErrorNotSendHR }}
+                      </div>
+                    </ng-container>
+                    <ng-container *ngIf="ErrorMessage.status == 400 && ErrorMessage.error.status == 'OVERLAPPING_DATE'">
+                      <div class="alert alert-warning" role="alert">
+                        {{ message.FormErrorDateOverLoad}}
                       </div>
                     </ng-container>
                   </ng-container>
                 </ng-container>
                 <ng-template #success>
                   <div class="alert alert-success" role="alert">
-                  {{ message.FormSuccess }}
+                    {{ message.FormSuccess }}
                   </div>
                 </ng-template>
               </mat-card-content>

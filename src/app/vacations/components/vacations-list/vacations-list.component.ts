@@ -52,10 +52,8 @@ export class VacationsListComponent implements AfterViewInit, OnInit {
   filterAk():void {
     if(this.buttonCheckStateAk == true) {
       this.buttonCheckStateAk = false;
-      // this.applyFilterAK(this.buttonCheckStateAk);
     } else {
       this.buttonCheckStateAk = true;
-      // this.applyFilterAK(this.buttonCheckStateAk);
     }
     this.applyFilter();
   }
@@ -63,21 +61,11 @@ export class VacationsListComponent implements AfterViewInit, OnInit {
   filterPl():void {
     if(this.buttonCheckStatePl == true) {
       this.buttonCheckStatePl = false;
-      // this.applyFilterPL(this.buttonCheckStatePl);
     } else {
       this.buttonCheckStatePl = true;
-      // this.applyFilterPL(this.buttonCheckStatePl);
     }
     this.applyFilter();
   }
-
-  // applyFilterAK(value: boolean):void {
-  //   (value)? this.applyFilter(Message.VactionCurrent) : this.applyFilter('');
-  // }
-
-  // applyFilterPL(value: boolean):void {
-  //   (value)? this.applyFilter(Message.VactionPlanned) : this.applyFilter('');
-  // }
 
   checkApplyFilterPlAk():string {
     let selectCurrent: string = "";
@@ -121,6 +109,5 @@ export class VacationsListComponent implements AfterViewInit, OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    //this.table.dataSource = this.dataSource;
   }
 }

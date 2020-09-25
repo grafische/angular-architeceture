@@ -47,10 +47,6 @@ export class VacationsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.store.dispatch(VacationAction.enterVacations());
-    // this.store.dispatch(DepartmentAction.enterDepartments());
-    // this.store.dispatch(DepartmentUsersAction.enterDepartmentUsers());
-    // this.store.dispatch(VacationTypeAction.enterVacationTypes());
   }
 
   onDelete(vacation: Vacation) {

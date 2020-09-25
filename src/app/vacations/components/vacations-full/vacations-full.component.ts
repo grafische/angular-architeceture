@@ -25,10 +25,12 @@ export class VacationsFullComponent implements OnInit {
 
   departmentVacations$: Observable<DepartmentVacations[]>;
   department$: Observable<Department[]>;
+  departmentStatus$: Observable<boolean>;
   vacationType$: Observable<VacationType[]>;
 
   constructor( private store: Store<State> ) {
     this.department$ = store.select(SelectorsDepartment.selectAllDepartment);
+    this.departmentStatus$ = store.select(SelectorsDepartmentVacations.selectGettingDepartmentStatus);
     this.vacationType$ = this.store.select(SelectorsVacationType.selectAllVacationType);
   }
 

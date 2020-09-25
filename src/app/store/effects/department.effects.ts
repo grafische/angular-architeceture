@@ -3,7 +3,6 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { exhaustMap, map, catchError, tap } from 'rxjs/operators';
 
 import { DataDepartmentService } from './../services/data-Department.service';
-//import * as DepartmentActions from '../actions/Department.actions';
 import * as DepartmentActions from '../actions/department.actions';
 import { of } from 'rxjs';
 

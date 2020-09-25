@@ -7,6 +7,7 @@ export const DepartmentVacationssFeatureKey = 'DepartmentVacationss';
 
 export interface State extends EntityState<DepartmentVacations> {
   // additional entities state properties
+  gettingStatus: boolean;
   error: Error;
 }
 
@@ -22,6 +23,7 @@ export const adapter: EntityAdapter<DepartmentVacations> = createEntityAdapter<D
 
 export const initialState: State = adapter.getInitialState({
   // additional entity state properties
+  gettingStatus: false,
   error: null,
 });
 
@@ -30,7 +32,7 @@ export const reducer = createReducer(
   initialState,
   on(DepartmentVacationsActions.enterDepartmentVacations,
     (state, action) => {
-      return { ...state, departmentId: action.id }
+      return { ...state, departmentId: action.id, gettingStatus: true }
     }
   ),
   on(DepartmentVacationsActions.addDepartmentVacations,
@@ -52,14 +54,14 @@ export const reducer = createReducer(
     (state, action) => adapter.removeOne(action.id, state)
   ),
   on(DepartmentVacationsActions.loadDepartmentVacations,
-    (state, action) => adapter.setAll(action.departmentVacations, state)
+    (state, action) => adapter.setAll(action.departmentVacations, { ...state, gettingStatus: false })
   ),
   on(DepartmentVacationsActions.clearDepartmentVacations,
     state => adapter.removeAll(state)
   ),
 );
 
-
+export const selectGettingStatus = (state: State) => state.gettingStatus;
 export const {
   selectIds,
   selectEntities,

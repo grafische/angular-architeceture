@@ -68,8 +68,6 @@ export class VacationsFormComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    // this.store.dispatch(DepartmentAction.enterDepartments());
-    // this.store.dispatch(DepartmentUsersAction.enterDepartmentUsers());
     this.vacationType$ = this.store.select(SelectorsVacationType.selectAllVacationType);
     this.department$ = this.store.select(SelectorsDepartment.selectAllDepartment);
     this.departmentUsers$ = this.store.select(SelectorsDepartmentUsers.selectAllDepartmentUser);
@@ -114,27 +112,9 @@ export class VacationsFormComponent implements OnInit {
     this.store.dispatch(VacationAction.addVacation({vacation: data}));
     this.myStepper.next();
     this.isEditable = false;
-    //data.years = new Date(data.startDate).getFullYear();
-    //this.store.dispatch(DepartmentOwnAction.addDepartmentOwn({vacation: data}));
-    //this.store.dispatch(VacationAction.enterVacations());
-    //this.store.dispatch(DepartmentOwnAction.enterDepartmentOwns());
   }
 
   filterDepartmentName( id: number ): Observable<DepartmentUser> {
     return this.departmentUser$ = this.store.select(SelectorsDepartmentUsers.selectOneDepartmentUser, {id: id});
   }
 }
-
-  // addressForm = this.fb.group({
-  //   company: null,
-  //   firstName: [null, Validators.required],
-  //   lastName: [null, Validators.required],
-  //   address: [null, Validators.required],
-  //   address2: null,
-  //   city: [null, Validators.required],
-  //   state: [null, Validators.required],
-  //   postalCode: [null, Validators.compose([
-  //     Validators.required, Validators.minLength(5), Validators.maxLength(5)])
-  //   ],
-  //   shipping: ['free', Validators.required]
-  // });

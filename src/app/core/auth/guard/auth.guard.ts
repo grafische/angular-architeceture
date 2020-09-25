@@ -25,41 +25,4 @@ export class AuthGuard implements CanActivate {
       return false;
     }
   }
-//   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-//     const currentUser = this.authenticationService.currentUserValue;
-//     if (currentUser) {
-//         // logged in so return true
-//         return true;
-//     }
-
-//     // not logged in so redirect to login page with the return url
-//     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
-//     return false;
-// }
-  // canActivate(): Observable<boolean> {
-  //   return this.store.pipe(
-  //     select(fromAuthSelector.selectAuthUser),
-  //     map((authed) => {
-  //       if (!authed) {
-  //         console.info("Denied authed" + authed);
-  //         //this.store.dispatch(fromAuthActions.loginRedirect());
-  //         return false;
-  //       }
-
-  //       return true;
-  //     }),
-  //     take(1)
-  //   );
-  // }
-
 }
-
-
-/*
-constructor( private dataAuthService: DataAuthService) {}
-
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // add authorization header with basic auth credentials if available
-    const getLocalStorageUser: User = JSON.parse(localStorage.getItem("auth"));
-    const currentDataUserEn = this.dataAuthService.authDataEncode || getLocalStorageUser?.authToken;
-*/

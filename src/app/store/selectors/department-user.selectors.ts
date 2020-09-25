@@ -33,17 +33,6 @@ export const selectOneDepartmentUser = createSelector(
   }
 );
 
-// export const selectOneDepartmentUser = createSelector(
-//   fromDepartmentUser.selectAll,
-//   ( departmentUsers: DepartmentUser[], props: DepartmentId ) =>  {
-//     if (departmentUsers && props) {
-//       return departmentUsers.filter((departmentUser: DepartmentUser) => departmentUser.id === props.id);
-//     } else {
-//       return departmentUsers;
-//     }
-//   }
-// );
-
 export const getErrorDepartmentUser = createSelector(
   selectDepartmentUsersState,
   state => state.error

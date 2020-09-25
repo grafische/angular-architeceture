@@ -16,7 +16,6 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor( private dataAuthService: DataAuthService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // add authorization header with basic auth credentials if available
     const getLocalStorageUser: User = JSON.parse(localStorage.getItem("auth"));
     const currentDataUserEn = this.dataAuthService.authDataEncode || getLocalStorageUser?.authToken;
     if (currentDataUserEn) {

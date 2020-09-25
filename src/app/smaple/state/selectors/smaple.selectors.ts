@@ -22,14 +22,4 @@ export const selectSmapleTotal = createSelector(
   selectSmapleState,
   fromSmaple.selectSmapleTotal
 );
-// export const selectCurrentSmapleId = createSelector(
-//   selectSmapleState,
-//   fromSmaple.getSelectedSmapleId
-// );
-
-// export const selectCurrentSmaple = createSelector(
-//   selectSmapleEntities,
-//   selectCurrentSmapleId,
-//   (SmapleEntities, SmapleId) => SmapleEntities[SmapleId]
-// );
 

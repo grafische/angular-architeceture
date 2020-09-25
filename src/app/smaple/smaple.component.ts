@@ -24,7 +24,6 @@ export class SmapleComponent implements OnInit {
   constructor(private store: Store<State>) {
     this.smaples$ = store.select(SmapleSelectors.selectAllSmaples);
     this.ids$ = store.select(SmapleSelectors.selectSmapleIds);
-    // this.currentSmaple$ = store.select(selectActiveBook);
     this.total$ = store.select(SmapleSelectors.selectSmapleTotal);
     this.entities$ = store.select(SmapleSelectors.selectSmapleEntities);
   }

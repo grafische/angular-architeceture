@@ -10,9 +10,6 @@ import { State } from './../../store';
 import { DataDepartmentOwnService } from './../services/data-department-own.service';
 
 import * as SelectorsAuth from './../../store/selectors/auth.selectors';
-
-
-//import * as DepartmentOwnActions from '../actions/DepartmentOwn.actions';
 import * as DepartmentOwnActions from '../actions/department-own.actions';
 
 

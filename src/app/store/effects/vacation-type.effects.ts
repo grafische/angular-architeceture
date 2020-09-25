@@ -3,7 +3,6 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { exhaustMap, map, catchError, tap } from 'rxjs/operators';
 
 import { DataVacationTypeService } from './../services/data-vacation-type.service';
-//import * as VacationTypeActions from '../actions/VacationType.actions';
 import * as VacationTypeActions from '../actions/vacation-type.actions';
 import { of } from 'rxjs';
 

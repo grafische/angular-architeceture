@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
+import { User } from './../../core/model/user.model';
 import { DepartmentUser } from '../../core/model/department-user.model';
 
 export const enterDepartmentUsers = createAction(
@@ -32,9 +33,24 @@ export const upsertDepartmentUsers = createAction(
   props<{ departmentUsers: DepartmentUser[] }>()
 );
 
+export const updateDepartmentOneUser = createAction(
+  '[DepartmentUser/API] Update DepartmentOneUser',
+  props<{ departmentUser: Update<DepartmentUser>, user:  User }>()
+);
+
+export const updatedDepartmentOneUser = createAction(
+  '[DepartmentUser/API] Updated DepartmentOneUser',
+  props<{ departmentUser: Update<DepartmentUser>, user:  User }>()
+);
+
 export const updateDepartmentUser = createAction(
   '[DepartmentUser/API] Update DepartmentUser',
-  props<{ departmentUser: Update<DepartmentUser> }>()
+  props<{ departmentUser: Update<DepartmentUser>, user:  User }>()
+);
+
+export const updatedDepartmentUser = createAction(
+  '[DepartmentUser/API] Updated DepartmentUser',
+  props<{ departmentUser: Update<DepartmentUser>, user:  User }>()
 );
 
 export const updateDepartmentUsers = createAction(

@@ -17,6 +17,8 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { BottomSheetAlertComponent } from './bottomsheet/bottom-sheet-alert.component';
 import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
@@ -51,7 +53,9 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     MatProgressSpinnerModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatStepperModule
+    MatStepperModule,
+    MatFormFieldModule,
+    MatDividerModule
   ]
 })
 export class MaterialModule { }

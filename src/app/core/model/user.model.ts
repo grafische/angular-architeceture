@@ -1,8 +1,16 @@
+export interface UserWorkingHours {
+  dayOfWeek: string;
+  endHour: string;
+  id?: number;
+  startHour: string;
+}
+
 export interface User {
   birtday: Date;
   communicatorNumber: string;
   departmentId: 0;
   departmentName: string;
+  email: string;
   extensionNumber: string;
   former: true;
   id: number;
@@ -15,6 +23,7 @@ export interface User {
   phoneNumber: string;
   photoUrl: string;
   position: string;
+  workingHours: Array<UserWorkingHours>;
   roles: Array<string>;
   room: string;
   supervisorId: 0;

@@ -13,7 +13,7 @@ export class DataDepartmentVacationsService {
   constructor( private http: HttpClient ) { }
 
   getDepartmentVacations(id: number) {
-    return this.http.get<DepartmentVacations[]>(`${this.apiUrlBase}api/leave/department/${id}`);
+    return this.http.get<DepartmentVacations[]>(`${this.apiUrlBase}api/leaves/department/${id}`);
   }
 }
 

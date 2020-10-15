@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="d-flex align-items-start">
+            Wizytówki
+          <!-- <ng-container *ngIf="departmentStatus$ | async">
+            <mat-spinner diameter="21"></mat-spinner>
+          </ng-container> -->
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="container mt-4">
+            <div class="row">
+              <div class="col-6">
+                <mat-form-field class="form-field-full-width" appearance="outline">
+                  <mat-label>Szukaj ...</mat-label>
+                  <input matInput [(ngModel)]="searchField" #search="ngModel" value=""
+                    placeholder="Placeholder">
+                  <button mat-button matSuffix mat-icon-button aria-label="Search" #input>
+                    <mat-icon matSuffix>search</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <div class="col-6">
+                <mat-form-field appearance="fill">
+                  <mat-select [(ngModel)]="department" value="" #selectDepartment>
+                    <mat-option value="">Wszystkie</mat-option>
+                    <mat-option [value]="item.name" *ngFor="let item of department$ | async">{{ item.name }}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <div class="container mt-4">
+            <div class="row">
+              <div class="col-12">
+                <app-cards-list [filterEmployee]="searchField" [departments]="departmentUsers$ | async | cardsFilter:department:searchField"></app-cards-list>
+                <!-- <router-outlet></router-outlet> -->
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

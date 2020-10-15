@@ -16,7 +16,7 @@ export class DataVacationService {
   constructor( private http: HttpClient ) { }
 
   getVacations() {
-    return this.http.get<Vacation[]>(`${this.apiUrlBase}api/leave`).pipe(
+    return this.http.get<Vacation[]>(`${this.apiUrlBase}api/leaves`).pipe(
       map( val => {
         val.forEach( (item, idx) => {
           const currentDate: Date = new Date();
@@ -29,10 +29,10 @@ export class DataVacationService {
   }
 
   create( value: Vacation) {
-    return this.http.post<Vacation>(`${this.apiUrlBase}api/leave`, value);
+    return this.http.post<Vacation>(`${this.apiUrlBase}api/leaves`, value);
   }
 
   delete(id: number) {
-    return this.http.delete(`${this.apiUrlBase}api/leave/${id}`);
+    return this.http.delete(`${this.apiUrlBase}api/leaves/${id}`);
   }
 }

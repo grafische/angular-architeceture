@@ -15,6 +15,7 @@ import { MaterialModule } from './shared/material/material.module';
 import { UserModule } from './user';
 import { reducers } from './store';
 import { AuthModule } from './core/auth/auth.module';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AuthModule } from './core/auth/auth.module';
     MaterialModule,
     UserModule,
     HeaderModule,
-    AuthModule
+    AuthModule,
+    StoreRouterConnectingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,208 @@
+<!-- {{ dataEmployee | json }} -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <form [formGroup]="cardForm" (ngSubmit)="onSubmit()" class="full-width" novalidate>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Formularz</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div formArrayName="employees">
+              <div *ngFor="let control of empoloyeesForm.controls; let i=index">
+                <div [formGroupName]="i">
+                  <div class="container" *ngIf="control.get('login').value == dataEmployee.login" >
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="full-width">
+                          <mat-select placeholder="Dział:" formControlName="departmentId" >
+                            <mat-option *ngFor="let department of departments" [id]="department.name"
+                              [value]="department.id">
+                              {{ department.name }}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="control.get('departmentId').hasError('required')">
+                            Dział jest <strong>wymagany</strong>
+                          </mat-error>
+                        </mat-form-field>
+                        <input type="hidden" formControlName="departmentName">
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="Login:" formControlName="login" value="">
+                          <!-- <mat-error *ngIf=" empoloyeesForm.controls['login'].hasError('required')">
+                            Dział jest <strong>wymagany</strong>
+                          </mat-error> -->
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="Imię:" formControlName="name" value="">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="Nazwisko:" formControlName="surname" value="">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="Ksywka:" formControlName="nickname" value="">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="Stanowisko:" formControlName="position" value="">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="Pokój:" formControlName="room" value="">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="E-mail:" formControlName="email" value="">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="Telefon:" formControlName="phoneNumber" value="">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="Telefon komórkowy:" formControlName="mobilePhoneNumber" value="">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="Komunikator:" formControlName="communicatorNumber" value="">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="WWW:" formControlName="wwwAddress" value="">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                          <mat-label>Urodziny:</mat-label>
+                          <input matInput formControlName="birthday" [matDatepicker]="pickerBirthDay">
+                          <mat-datepicker-toggle matSuffix [for]="pickerBirthDay">
+                            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                          </mat-datepicker-toggle>
+                          <mat-datepicker #pickerBirthDay></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="example-full-width" appearance="fill">
+                          <mat-label>Imieniny:</mat-label>
+                          <input matInput formControlName="nameday" [matDatepicker]="pickerNameDay">
+                          <mat-datepicker-toggle matSuffix [for]="pickerNameDay">
+                            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                          </mat-datepicker-toggle>
+                          <mat-datepicker #pickerNameDay></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-form-field class="full-width">
+                          <input matInput placeholder="Gniazdko telefoniczne:" formControlName="phoneNumber" value="">
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <mat-checkbox formControlName="former">Czy były pracownik:</mat-checkbox>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <h3>Godziny pracy:</h3>
+                      </div>
+                    </div>
+
+                    <div formArrayName="workingHours">
+                      <div *ngFor="let item of empoloyeeHoursForm(i).controls; let idHour=index" [formGroupName]="idHour">
+                        <div class="row">
+                          <div class="col-12">
+                            <mat-form-field class="full-width">
+                              <mat-select formControlName="dayOfWeek" placeholder="Dzień tygodnia">
+                                <mat-option *ngFor="let day of daysArray" [value]="day.id">
+                                  {{ day.name }}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                              <input matInput [ngxTimepicker]="startHourPickerP" [format]="24" placeholder="Od:"
+                                formControlName="startHour" value="">
+                            </mat-form-field>
+                            <ngx-material-timepicker [cancelBtnTmpl]="close" [confirmBtnTmpl]="confirm"
+                              #startHourPickerP>
+                            </ngx-material-timepicker>
+                            <mat-form-field class="full-width">
+                              <input matInput [ngxTimepicker]="endHourPickerP" [format]="24" placeholder="Do:"
+                                formControlName="endHour" value="">
+                            </mat-form-field>
+                            <ngx-material-timepicker [cancelBtnTmpl]="close" [confirmBtnTmpl]="confirm" #endHourPickerP>
+                            </ngx-material-timepicker>
+                            <button type="button" mat-icon-button (click)="removeDayHours(i, idHour)">
+                              <mat-icon>remove_circle</mat-icon>
+                            </button>
+                            <mat-divider></mat-divider>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="button" *ngIf="empoloyeeHoursForm(i).controls.length < 7" mat-icon-button
+                        (click)="addDayHour(i)">
+                        <mat-icon>add_circle</mat-icon>
+                      </button>
+                      <ng-template #close>
+                        <button mat-button>Zamknij</button>
+                      </ng-template>
+                      <ng-template #confirm>
+                        <button mat-button>Zatwierdź</button>
+                      </ng-template>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit">Submit</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

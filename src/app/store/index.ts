@@ -1,4 +1,5 @@
 import { ActionReducerMap, createFeatureSelector, createSelector, MetaReducer } from '@ngrx/store';
+import * as fromRouter from '@ngrx/router-store';
 
 import * as fromUser from './reducers/user.reducer';
 import * as fromVacations from './reducers/vacation.reducer';
@@ -15,6 +16,7 @@ export * from './services';
 
 
 export interface State {
+  router: fromRouter.RouterReducerState<any>;
   users: fromUser.State;
   vacations: fromVacations.State;
   departments: fromDepartments.State;
@@ -26,6 +28,7 @@ export interface State {
 }
 
 export const reducers: ActionReducerMap<State> = {
+  router: fromRouter.routerReducer,
   users: fromUser.reducer,
   vacations: fromVacations.reducer,
   departments: fromDepartments.reducer,

@@ -5,6 +5,10 @@ export const menu_data: Menu[] = [
     link: "urlopy"
   },
   {
+    label: "Wizytówki",
+    link: "wizytowki"
+  },
+  {
     label: "Ludzie",
     link: "ludzie"
   },

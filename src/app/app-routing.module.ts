@@ -1,4 +1,5 @@
 import { PreloaderResolver } from './vacations/resolver/preloader.resolver';
+import { PreloaderCardsResolver } from './cards/resolver/preloader-cards.resolver';
 import { AuthGuard } from './core/auth/guard/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -18,8 +19,14 @@ const routes: Routes = [
   loadChildren: () => import('./vacations/vacations.module').then(m => m.VacationsModule),
   canActivate: [AuthGuard],
   resolve: { data: PreloaderResolver }
-},
-{ path: 'login', component: LoginPageComponent },
+  },
+  { path: 'login', component: LoginPageComponent },
+  {
+    path: 'wizytowki',
+    loadChildren: () => import('./cards/cards.module').then(m => m.CardsModule),
+    canActivate: [AuthGuard],
+    resolve: { data: PreloaderCardsResolver }
+  }
 ];
 
 @NgModule({

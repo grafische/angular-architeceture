@@ -40,7 +40,7 @@ export const reducer = createReducer(
   on(DepartmentUserActions.upsertDepartmentUsers,
     (state, action) => adapter.upsertMany(action.departmentUsers, state)
   ),
-  on(DepartmentUserActions.updateDepartmentUser,
+  on(DepartmentUserActions.updatedDepartmentUser,
     (state, action) => adapter.updateOne(action.departmentUser, state)
   ),
   on(DepartmentUserActions.updateDepartmentUsers,

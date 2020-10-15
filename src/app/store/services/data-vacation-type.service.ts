@@ -13,7 +13,7 @@ export class DataVacationTypeService {
   constructor( private http: HttpClient ) { }
 
   getVacationTypes() {
-    return this.http.get<VacationType[]>(`${this.apiUrlBase}api/leave/types`);
+    return this.http.get<VacationType[]>(`${this.apiUrlBase}api/leaves/types`);
   }
 }
 

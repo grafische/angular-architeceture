@@ -26,7 +26,6 @@ export class CardsEditComponent implements OnInit {
 
   ngOnInit() {
     this.departmentsType$ = this.store.select(SelectorsDepartment.selectAllDepartment);
-    //tutaj skończyłem
     this.departmentEmployee$ = this.store.select(SelectorsDepartmentUsers.selectDepartmentEmployeeDepartmentUser);
     this.employee$ = this.store.select(SelectorsDepartmentUsers.selectDetailsEmployeeDepartmentUser);
   }

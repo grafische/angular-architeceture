@@ -1,4 +1,4 @@
-<mat-card (click)="details(employee.login)">
+<mat-card *ngIf="employee" (click)="details(employee.login)">
   <mat-card-header>
     <mat-card-title>
       {{ employee.name }} {{ employee.surname }}
@@ -9,29 +9,36 @@
     <!-- <img [src]="employee.phoneNumber" alt="" srcset=""> -->
     <mat-list>
       <mat-list-item>Dział: {{ employee.departmentName }}</mat-list-item>
-            <mat-list-item>Stannowisko: {{ employee.position }}</mat-list-item>
-            <mat-list-item>Pokój: {{ employee.room }}</mat-list-item>
-            <mat-list-item>E-mail: {{ employee.email }}</mat-list-item>
-            <mat-list-item *ngIf="employee.phoneNumber">Telefon: {{ employee.phoneNumber }}</mat-list-item>
-            <mat-list-item *ngIf="employee.mobilePhoneNumber">Telefon komórkowy: {{ employee.mobilePhoneNumber}}
-            </mat-list-item>
-            <mat-list-item *ngIf="employee.extensionNumber">Telefon: {{ employee.extensionNumber}}</mat-list-item>
-            <!-- <mat-list-item *ngIf="departmentEmployeesPhoneRoom$ | async as EmployeesRoom">
+      <mat-list-item>Stannowisko: {{ employee.position }}</mat-list-item>
+      <mat-list-item>Pokój: {{ employee.room }}</mat-list-item>
+      <mat-list-item>E-mail: {{ employee.email }}</mat-list-item>
+      <mat-list-item *ngIf="employee.phoneNumber">Telefon: {{ employee.phoneNumber }}</mat-list-item>
+      <mat-list-item *ngIf="employee.mobilePhoneNumber">Telefon komórkowy: {{ employee.mobilePhoneNumber}}
+      </mat-list-item>
+      <mat-list-item *ngIf="employee.extensionNumber">Telefon: {{ employee.extensionNumber}}</mat-list-item>
+      <!-- <mat-list-item *ngIf="departmentEmployeesPhoneRoom$ | async as EmployeesRoom">
               <p>Inne telefony w pokoju:</p>
               <p *ngFor="let employeeRoom of EmployeesRoom">
                 {{ employeeRoom.name }} {{ employeeRoom.surname }}: {{ employeeRoom.phoneNumber }}<br />
               </p>
             </mat-list-item> -->
-            <mat-list-item *ngIf="employee.nameday">Data imienin: {{ employee.nameday }}</mat-list-item>
-            <mat-list-item *ngIf="employee.workingHours as WorkingHours">
-              Godziny pracy:<br />
-              <ng-container *ngFor="let workingHour of WorkingHours">
-                {{ workingHour.dayOfWeek }}: {{ workingHour.startHour }} - {{ workingHour.endHour }}
-              </ng-container>
-            </mat-list-item>
-            <mat-list-item>
-              <a [href]="'/api/employees/' + employee.id + '/vcf'" mat-button>Dane w formacie vCard</a>
-            </mat-list-item>
+      <mat-list-item *ngIf="employee.nameday">Data imienin: {{ employee.nameday | date:'dd MMMM':'GMT':'pl-PL' }}</mat-list-item>
+      <mat-list-item *ngIf="employee.workingHours && employee.workingHours.length > 0">
+        Godziny pracy:<br />
+        <ng-container *ngFor="let workingHour of employee.workingHours | cardsHoursOrder | cardsHoursUnique">
+          <ng-container *ngIf="workingHour">
+            <ng-container *ngIf="workingHour.dayOfWeek === rangeDaysWorking.MONDAY_FRIDAY">
+              {{ rangeDaysWorking.MONDAY_FRIDAY }}: {{ workingHour.startHour }} - {{ workingHour.endHour }}
+            </ng-container>
+            <ng-container *ngIf="workingHour.dayOfWeek != rangeDaysWorking.MONDAY_FRIDAY">
+              {{ days[workingHour.dayOfWeek] }}: {{ workingHour.startHour }} - {{ workingHour.endHour }}
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </mat-list-item>
+      <mat-list-item>
+        <a [href]="'/api/employees/' + employee.id + '/vcf'" mat-button>Dane w formacie vCard</a>
+      </mat-list-item>
     </mat-list>
   </mat-card-content>
 </mat-card>

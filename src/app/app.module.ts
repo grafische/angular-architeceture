@@ -1,6 +1,6 @@
 import { HeaderModule } from './header/header.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,10 @@ import { UserModule } from './user';
 import { reducers } from './store';
 import { AuthModule } from './core/auth/auth.module';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { registerLocaleData } from '@angular/common';
+import localePl from '@angular/common/locales/pl';
+
+registerLocaleData(localePl);
 
 @NgModule({
   declarations: [
@@ -35,7 +39,9 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     AuthModule,
     StoreRouterConnectingModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pl'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

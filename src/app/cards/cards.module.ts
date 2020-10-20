@@ -13,10 +13,13 @@ import { CardsListComponent } from './components/cards-list/cards-list.component
 import { CardsPageComponent } from './components/cards-page/cards-page.component';
 import { CardsEmployeeFilterPipe } from './pipes/cards-employee-filter.pipe';
 import { CardsFilterPipe } from './pipes/cards-filter.pipe';
+import { CardsAddComponent } from './components/cards-add/cards-add.component';
+import { CardsHoursUniquePipe } from './pipes/cards-hours-unique.pipe';
+import { CardsHoursOrderPipe } from './pipes/cards-hours-order.pipe';
 
 
 @NgModule({
-  declarations: [CardsPageComponent, CardsListComponent, CardsDepartmentComponent, CardsEmployeesComponent, CardsFilterPipe, CardsEmployeeFilterPipe, CardsDetailComponent, CardsFormComponent, CardsEditComponent],
+  declarations: [CardsPageComponent, CardsListComponent, CardsDepartmentComponent, CardsEmployeesComponent, CardsFilterPipe, CardsEmployeeFilterPipe, CardsDetailComponent, CardsFormComponent, CardsEditComponent, CardsAddComponent, CardsHoursUniquePipe, CardsHoursOrderPipe],
   imports: [
     SharedModule,
     CardsRoutingModule,

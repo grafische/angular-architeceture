@@ -26,11 +26,18 @@
                 {{ employeeRoom.name }} {{ employeeRoom.surname }}: {{ employeeRoom.phoneNumber }}<br />
               </p>
             </mat-list-item>
-            <mat-list-item>Data imienin: {{ employee.nameday }}</mat-list-item>
-            <mat-list-item *ngIf="employee.workingHours as WorkingHours">
+            <mat-list-item *ngIf="employee.nameday">Data imienin: {{ employee.nameday | date:'dd MMMM':'GMT':'pl-PL' }}</mat-list-item>
+            <mat-list-item *ngIf="employee.workingHours.length > 0">
               Godziny pracy:<br />
-              <ng-container *ngFor="let workingHour of WorkingHours">
-                {{ workingHour.dayOfWeek }}: {{ workingHour.startHour }} - {{ workingHour.endHour }}
+              <ng-container *ngFor="let workingHour of employee.workingHours | cardsHoursOrder | cardsHoursUnique">
+                <ng-container *ngIf="workingHour">
+                  <ng-container *ngIf="workingHour.dayOfWeek === rangeDaysWorking.MONDAY_FRIDAY" >
+                    {{ rangeDaysWorking.MONDAY_FRIDAY }}: {{ workingHour.startHour }} - {{ workingHour.endHour }}
+                  </ng-container>
+                  <ng-container *ngIf="workingHour.dayOfWeek != rangeDaysWorking.MONDAY_FRIDAY" >
+                  {{ days[workingHour.dayOfWeek] }}: {{ workingHour.startHour }} - {{ workingHour.endHour }}
+                  </ng-container>
+                </ng-container>
               </ng-container>
             </mat-list-item>
             <mat-list-item>

@@ -1,4 +1,5 @@
-import { selectUser } from './../../../store/reducers/auth.reducer';
+import { daysWorking } from './../../../core/const/days-working.const';
+import { FormMode } from './../../../core/model/form-mode.enum';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -16,6 +17,7 @@ import { State } from './../../../store';
 })
 export class CardsFormComponent implements OnInit {
 
+  @Input() mode: FormMode;
   @Input() set departmentEmployee(data: DepartmentUser) {
     if (data) {
       this.__departmentUser = data;
@@ -35,10 +37,9 @@ export class CardsFormComponent implements OnInit {
   @Input() departments: Department[];
 
   private __departmentUser: DepartmentUser;
-  private __selectUser: User;
-  days = Object.values(Days);
-  daysTest = Days;
+  days = Days;
   daysArray: Array<any>;
+  formMode = FormMode;
 
   cardForm = this.fb.group({
     id: [null, Validators.required],
@@ -51,6 +52,12 @@ export class CardsFormComponent implements OnInit {
 
   ngOnInit() {
     this.daysArray = this.daysToArray();
+    console.info(this.mode == this.formMode.ADD );
+    console.info(this.mode + ' == ' + this.formMode.ADD );
+    if(this.mode === this.formMode.ADD) {
+      this.empoloyeesForm.push(this.employeeForm());
+      this.addDayHours(daysWorking, 0);
+    }
   }
 
   constructor(
@@ -161,11 +168,11 @@ export class CardsFormComponent implements OnInit {
 
   daysToArray(): Array<any> {
 
-    return Object.keys(this.daysTest)
+    return Object.keys(this.days)
       .map(key => {
         return {
           id: key,
-          name: this.daysTest[key]
+          name: this.days[key]
         }
       });
   }

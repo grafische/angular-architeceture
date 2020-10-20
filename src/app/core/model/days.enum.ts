@@ -7,3 +7,7 @@ export enum Days {
   SATURDAY = "Sobota",
   SUNDAY = "Niedziela"
 }
+
+export enum RangeDaysWorking {
+  MONDAY_FRIDAY = "Poniedziałek - Piątek"
+}

@@ -1,5 +1,6 @@
+import { Vacation } from './../../core/model/vacation.model';
 import { VacationType } from './../../core/model/vacation-type.model';
-import { DepartmentOwn, DepartmentOwnItem, DepartmentOwnYearsData, DepartmentOwnSummary } from '../../core/model/department-own.model';
+import { DepartmentOwnYearsData, DepartmentOwnSummary } from '../../core/model/department-own.model';
 import { Pipe, PipeTransform } from '@angular/core';
 
 
@@ -9,14 +10,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TransformDepartmentOwnPipe implements PipeTransform {
 
-  transform(value: DepartmentOwn[], typeLeave: VacationType[], type?: string): Array<DepartmentOwnSummary | DepartmentOwnYearsData> {
+  transform(value: Vacation[], type?: string): Array<DepartmentOwnSummary | DepartmentOwnYearsData> {
     const arrSummary: DepartmentOwnSummary[] = [];
     const arrCurrent: DepartmentOwnYearsData[] = [];
 
     const arrlistYears: Array<number> = value.map(item => item.years).filter((value, index, self) => self.indexOf(value) === index)
 
     arrlistYears.forEach(element => {
-      const arrListCurrentYears: DepartmentOwnItem[] = value.filter(item => item.years == element);
+      const arrListCurrentYears: Vacation[] = value.filter(item => item.years == element);
 
       arrCurrent.push({
         years: element,

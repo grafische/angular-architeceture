@@ -1,5 +1,5 @@
+import { Vacation } from './../../../core/model/vacation.model';
 import { VacationType } from './../../../core/model/vacation-type.model';
-import { DepartmentOwn, DepartmentOwnYears, DepartmentOwnItem, DepartmentOwnYearsData } from './../../../core/model/department-own.model';
 import { Component, OnInit } from '@angular/core';
 
 import { State } from './../../../store';
@@ -25,7 +25,7 @@ import { map, tap, first, concatMap, mergeMap, withLatestFrom } from 'rxjs/opera
 })
 export class MyVacationsPageComponent implements OnInit {
 
-  departmentOwn$: Observable<DepartmentOwn[]>;
+  departmentOwn$: Observable<Vacation[]>;
   vacationType$: Observable<VacationType[]>;
   displayedColumnsSummary: string[] = ['rok', 'prywatne', 'sluzbowe', 'choroby', 'inne', 'total'];
   displayedColumnsYears: string[] = ['details'];

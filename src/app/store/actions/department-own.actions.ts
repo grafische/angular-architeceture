@@ -2,7 +2,6 @@ import { Vacation } from 'src/app/core/model/vacation.model';
 import { createAction, props } from '@ngrx/store';
 import { Update } from '@ngrx/entity';
 
-import { DepartmentOwn } from '../../core/model/department-own.model';
 
 export const enterDepartmentOwns = createAction(
   '[DepartmentOwn/API] Enter'
@@ -40,12 +39,12 @@ export const upsertDepartmentOwns = createAction(
 
 export const updateDepartmentOwn = createAction(
   '[DepartmentOwn/API] Update DepartmentOwn',
-  props<{ vacation: Update<DepartmentOwn> }>()
+  props<{ vacation: Update<Vacation> }>()
 );
 
 export const updateDepartmentOwns = createAction(
   '[DepartmentOwn/API] Update DepartmentOwns',
-  props<{ departmentOwns: Update<DepartmentOwn>[] }>()
+  props<{ departmentOwns: Update<Vacation>[] }>()
 );
 
 export const deleteDepartmentOwn = createAction(

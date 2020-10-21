@@ -1,7 +1,6 @@
 import { Vacation } from 'src/app/core/model/vacation.model';
 import { Action, createReducer, on } from '@ngrx/store';
 import { EntityState, EntityAdapter, createEntityAdapter, Dictionary } from '@ngrx/entity';
-import { DepartmentOwn } from './../../core/model/department-own.model';
 import * as DepartmentOwnActions from '../actions/department-own.actions';
 
 export const DepartmentOwnsFeatureKey = 'DepartmentOwns';

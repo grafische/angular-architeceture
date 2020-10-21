@@ -1,41 +1,12 @@
-export interface DepartmentOwn {
-  contact: string;
-  departmentId: number;
-  departmentName: string;
-  employeeId: number;
-  employeeLogin: string;
-  employeeName: string;
-  endDate: Date;
-  leaveId: number;
-  leaveTypeId: number;
-  remarks: string;
-  startDate: Date;
-  years?: number;
-}
-
-
-export interface DepartmentOwnItem {
-  contact: string;
-  departmentId: number;
-  departmentName: string;
-  employeeId: number;
-  employeeLogin: string;
-  employeeName: string;
-  endDate: Date;
-  leaveId: number;
-  leaveTypeId: number;
-  remarks: string;
-  startDate: Date;
-  years?: number;
-}
+import { Vacation } from './vacation.model';
 
 export interface DepartmentOwnYears {
- [prop: number]: Array<DepartmentOwnItem>;
+ [prop: number]: Array<Vacation>;
 }
 
 export interface DepartmentOwnYearsData {
   years: number;
-  data: DepartmentOwnItem[];
+  data: Vacation[];
  }
 
 export interface DepartmentOwnSummary {

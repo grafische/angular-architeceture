@@ -1,4 +1,3 @@
-import { DepartmentOwn } from './../../core/model/department-own.model';
 import { VacationType } from './../../core/model/vacation-type.model';
 import { DepartmentUser } from './../../core/model/department-user.model';
 import { Department } from './../../core/model/department.model';
@@ -31,7 +30,7 @@ export class PreloaderResolver implements Resolve<any> {
   vacation$: Observable<Vacation[]>;
   department$: Observable<Department[]>;
   departmentUsers$: Observable<DepartmentUser[]>;
-  departmentOwns$: Observable<DepartmentOwn[]>;
+  departmentOwns$: Observable<Vacation[]>;
   vacationType$: Observable<VacationType[]>;
 
   resolve(): Observable<any> {

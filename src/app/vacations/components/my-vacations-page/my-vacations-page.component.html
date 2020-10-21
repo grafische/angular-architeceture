@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <table mat-table #table
-          [dataSource]="vacationDatas.departmentOwnList | transformDepartmentOwn:vacationDatas.typeList:'summary'">
+          [dataSource]="vacationDatas.departmentOwnList | transformDepartmentOwn:'summary'">
 
           <!-- Rok Column -->
           <ng-container matColumnDef="rok">
@@ -47,7 +47,7 @@
       </div>
     </div>
   </div>
-  <ng-container *ngFor="let item of vacationDatas.departmentOwnList | transformDepartmentOwn:vacationDatas.typeList">
+  <ng-container *ngFor="let item of vacationDatas.departmentOwnList | transformDepartmentOwn">
     <div class="container mt-5">
       <div class="row justify-content-center">
         <div class="col-4">

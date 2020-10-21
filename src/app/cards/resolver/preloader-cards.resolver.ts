@@ -1,4 +1,3 @@
-import { DepartmentOwn } from '../../core/model/department-own.model';
 import { VacationType } from '../../core/model/vacation-type.model';
 import { DepartmentUser } from '../../core/model/department-user.model';
 import { Department } from '../../core/model/department.model';

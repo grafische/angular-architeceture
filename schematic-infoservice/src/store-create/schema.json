@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "id": "StoreCreate",
+  "title": "Options Schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Name of the componet",
+      "default": "ng-conf",
+      "x-prompt": "Enter the name of the component"
+    },
+    "path": {
+      "type": "string",
+      "description": "Specifies the path to create the Order Wizard under",
+      "default": ""
+    },
+    "project": {
+      "type": "string",
+      "description": "Specifies the project to run the schematic in",
+      "default": "defaultProject"
+    },
+    "store": {
+      "type": "string",
+      "description": "Specifies the stores name",
+      "default": "store"
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

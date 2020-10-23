@@ -20,6 +20,10 @@
       "cm-ngrx": [
         "dist/cm-ngrx/cm-ngrx",
         "dist/cm-ngrx"
+      ],
+      "my-lib": [
+        "dist/my-lib/my-lib",
+        "dist/my-lib"
       ]
     }
   }

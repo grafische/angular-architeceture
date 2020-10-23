@@ -1,0 +1,19 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "schematic-infoservice": {
+      "description": "A blank schematic.",
+      "factory": "./schematic-infoservice/index#schematicInfoservice"
+    },
+    "create-module": {
+      "description": "Create module, compont and resolver",
+      "factory": "./create-module/index#createModule",
+      "schema": "./create-module/schema.json"
+    },
+    "store-create": {
+      "description": "create and configure connect to API.",
+      "factory": "./store-create/index#storeCreate",
+      "schema": "./store-create/schema.json"
+    }
+  }
+}

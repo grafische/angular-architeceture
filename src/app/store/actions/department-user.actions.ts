@@ -15,8 +15,25 @@ export const loadDepartmentUsers = createAction(
 
 export const addDepartmentUser = createAction(
   '[DepartmentUser/API] Add DepartmentUser',
-  props<{ departmentUser: DepartmentUser }>()
+  props<{ departmentUser: DepartmentUser, user: User }>()
 );
+
+export const addedDepartmentUser = createAction(
+  '[DepartmentUser/API] Add DepartmentUser',
+  props<{ departmentUser: DepartmentUser, user: User }>()
+);
+
+
+export const addOneDepartmentUser = createAction(
+  '[DepartmentUser/API] AddOne DepartmentUser',
+  props<{ departmentUser: Update<DepartmentUser>, user:  User }>()
+);
+
+export const addedOneDepartmentUser = createAction(
+  '[DepartmentUser/API] AddOne DepartmentUser',
+  props<{ departmentUser: Update<DepartmentUser>, user:  User }>()
+);
+
 
 export const upsertDepartmentUser = createAction(
   '[DepartmentUser/API] Upsert DepartmentUser',

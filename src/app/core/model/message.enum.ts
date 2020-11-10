@@ -1,5 +1,6 @@
 export enum Message {
   FormSuccess = "Formularz wysłany. Dziękujemy",
+  FormInValid = "Formularz nie został wysłany. Sprawdź czy wypełniłeś wemagane pola.",
   FormError = "Formularz nie został wysłany. Przepraszamy.",
   FormErrorNotSendEmploye = "Niestety nie udało się wysłać potwierdzenia zgłoszenia na Twój adres e-mail.",
   FormErrorNotSendSuperior = "Nie powiodło się przesłanie Twojego zgłoszenia do Twojego przełożonego.",
@@ -9,5 +10,6 @@ export enum Message {
   ChooseType = "Wybierz dział",
   AllType = "Wszystkie rodzaje",
   VactionCurrent = "aktualny",
-  VactionPlanned = "planowany"
+  VactionPlanned = "planowany",
+  UnAvailable = "jest nie obecny"
 }

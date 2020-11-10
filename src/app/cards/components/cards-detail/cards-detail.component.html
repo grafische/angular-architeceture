@@ -11,6 +11,9 @@
         </mat-card-header>
         <mat-card-content>
           <!-- <img [src]="employee.phoneNumber" alt="" srcset=""> -->
+          <div *ngIf="employee.currentLeave" class="alert alert-primary" role="alert">
+            Uwaga! {{ employee.name }} jest nieobecny od {{ employee.currentLeave.startDate | date:"MM/dd" }} do {{ employee.currentLeave.endDate | date:"MM/dd" }}.
+          </div>
           <mat-list>
             <mat-list-item>Dział: {{ employee.departmentName }}</mat-list-item>
             <mat-list-item>Stannowisko: {{ employee.position }}</mat-list-item>

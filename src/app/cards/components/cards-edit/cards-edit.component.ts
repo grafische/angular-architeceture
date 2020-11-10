@@ -17,6 +17,7 @@ export class CardsEditComponent implements OnInit {
 
   departmentsType$: Observable<Department[]>;
   departmentEmployee$: Observable<DepartmentUser>;
+  departmenSelecttUser$: Observable<User[]>;
   employee$: Observable<User>;
   route$: Observable<any>;
 
@@ -28,6 +29,7 @@ export class CardsEditComponent implements OnInit {
     this.departmentsType$ = this.store.select(SelectorsDepartment.selectAllDepartment);
     this.departmentEmployee$ = this.store.select(SelectorsDepartmentUsers.selectDepartmentEmployeeDepartmentUser);
     this.employee$ = this.store.select(SelectorsDepartmentUsers.selectDetailsEmployeeDepartmentUser);
+    this.departmenSelecttUser$ = this.store.select(SelectorsDepartmentUsers.getDepartmentSelectUsers);
   }
 
 

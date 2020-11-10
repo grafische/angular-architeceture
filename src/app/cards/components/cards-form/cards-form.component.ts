@@ -1,6 +1,8 @@
+import { structure } from './../../../core/const/structure.const';
+import { Message } from './../../../core/model/message.enum';
 import { daysWorking } from './../../../core/const/days-working.const';
 import { FormMode } from './../../../core/model/form-mode.enum';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import * as DepartmentUserActions from '../../../store/actions/department-user.actions';
@@ -9,6 +11,7 @@ import { DepartmentUser } from './../../../core/model/department-user.model';
 import { Department } from './../../../core/model/department.model';
 import { User, UserWorkingHours } from './../../../core/model/user.model';
 import { State } from './../../../store';
+import { Event } from '@angular/router';
 
 @Component({
   selector: 'app-cards-form',
@@ -26,7 +29,7 @@ export class CardsFormComponent implements OnInit {
         name: data.name,
         shortName: data.shortName,
         symbol: data.symbol
-       });
+      });
       this.addEmployees(data.employees);
     }
   }
@@ -34,27 +37,31 @@ export class CardsFormComponent implements OnInit {
     return this.__departmentUser;
   }
   @Input() dataEmployee: User;
+  @Input() allEmployees: User[];
+
   @Input() departments: Department[];
+  @Input() departmentsUser: DepartmentUser[];
 
   private __departmentUser: DepartmentUser;
   days = Days;
   daysArray: Array<any>;
   formMode = FormMode;
+  message = Message;
+  formValid: Boolean = true;
+  typeLevel = structure;
 
   cardForm = this.fb.group({
-    id: [null, Validators.required],
-    name: [null, Validators.required],
-    shortName: [null, Validators.required],
-    symbol: [null, Validators.required],
+    id: [null],
+    name: [null],
+    shortName: [null],
+    symbol: [null],
     employees: this.fb.array([])
   });
 
 
   ngOnInit() {
     this.daysArray = this.daysToArray();
-    console.info(this.mode == this.formMode.ADD );
-    console.info(this.mode + ' == ' + this.formMode.ADD );
-    if(this.mode === this.formMode.ADD) {
+    if (this.mode === this.formMode.ADD) {
       this.empoloyeesForm.push(this.employeeForm());
       this.addDayHours(daysWorking, 0);
     }
@@ -65,11 +72,53 @@ export class CardsFormComponent implements OnInit {
     private store: Store<State>
   ) { }
 
+  findInvalidControls() {
+    const invalid = [];
+    const controls = this.cardForm.controls;
+    for (const name in controls) {
+        if (controls[name].invalid) {
+            invalid.push(name);
+        }
+    }
+
+    return invalid;
+  }
+
+  departmentCategoryChange(ev: any, i: number) {
+    this.empoloyeesForm.at(i).get('departmentName').setValue(ev.source.selected.viewValue);
+  }
+
   onSubmit() {
-    const users: User[] = this.empoloyeesForm.value;
-    const user: User = users.filter( user => user.login === this.dataEmployee.login)[0];
-    const departmentUser = { id: this.__departmentUser.id, changes: this.cardForm.value };
-    this.store.dispatch(DepartmentUserActions.updateDepartmentUser({ departmentUser, user }));
+    if(!this.cardForm.invalid) {
+      this.formValid = true;
+      if (this.mode === this.formMode.UPGRADE) {
+        const users: User[] = this.empoloyeesForm.value;
+        const user: User = users.filter(user => user.login === this.dataEmployee.login)[0];
+        const departmentUser = { id: this.__departmentUser.id, changes: this.cardForm.value };
+        this.store.dispatch(DepartmentUserActions.updateDepartmentUser({ departmentUser, user }));
+      }
+
+      if (this.mode === this.formMode.ADD) {
+
+        const departmentIdNewUser = this.empoloyeesForm.at(0).value.departmentId;
+        const selectDepartmentUser = this.departmentsUser.filter(department => department.id === departmentIdNewUser)[0];
+        this.cardForm.patchValue({
+          id: selectDepartmentUser.id,
+          name: selectDepartmentUser.name,
+          shortName: selectDepartmentUser.shortName,
+          symbol: selectDepartmentUser.symbol,
+        });
+        selectDepartmentUser.employees.forEach(
+          user => this.empoloyeesForm.push(this.employeeForm(user))
+        );
+
+        const departmentUser = { id: departmentIdNewUser, changes: this.cardForm.value };
+        const user = this.empoloyeesForm.at(0).value;
+        this.store.dispatch(DepartmentUserActions.addOneDepartmentUser({ departmentUser, user }));
+      }
+    } else {
+      this.formValid = false;
+    }
   }
 
   addEmployees(employees: User[]) {
@@ -126,13 +175,13 @@ export class CardsFormComponent implements OnInit {
     return this.fb.group({
       departmentId: [user?.departmentId || null, Validators.required],
       departmentName: [user?.departmentName || null, Validators.required],
-      email: [user?.email || null, Validators.required],
+      email: [user?.email, Validators.required] || [null, Validators.required],
       supervisorId: user?.supervisorId || null,
       supervisorName: user?.supervisorName || null,
-      level: [user?.level, Validators.required] || null,
-      login: [user?.login, Validators.required] || null,
-      name: [user?.name, Validators.required] || null,
-      surname: [user?.surname, Validators.required] || null,
+      level: [user?.level, Validators.required] || [null, Validators.required],
+      login: [user?.login, Validators.required] || [null, Validators.required],
+      name: [user?.name, Validators.required] || [null, Validators.required],
+      surname: [user?.surname, Validators.required] || [null, Validators.required],
       nickname: user?.nickname || null,
       position: user?.position || null,
       room: user?.room || null,

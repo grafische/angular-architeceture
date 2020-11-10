@@ -1,5 +1,5 @@
-import { Menu } from './../shared/models/menu.model';
-export const menu_data: Menu[] = [
+import { Menu } from './../../shared/models/menu.model';
+export const menu: Menu[] = [
   {
     label: "Urlopy",
     link: "urlopy"
@@ -7,10 +7,6 @@ export const menu_data: Menu[] = [
   {
     label: "Wizytówki",
     link: "wizytowki"
-  },
-  {
-    label: "Ludzie",
-    link: "ludzie"
   },
   {
     label: "Tematy techniczne",
@@ -23,5 +19,9 @@ export const menu_data: Menu[] = [
   {
     label: "Aktualności",
     link: "aktualnosci"
+  },
+  {
+    label: "Struktura firmy",
+    link: "struktura_firmy"
   }
 ];

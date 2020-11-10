@@ -1,0 +1,47 @@
+<!-- <ng-container *ngIf="departmentManagerDepartmentUser$ | async as departments"> -->
+<!-- sassads {{ departments | json }} -->
+<ng-container *ngFor=" let manager of users | filterSupervisor:supervisorId">
+
+  <mat-divider></mat-divider>
+  <h3 mat-subheader>{{ manager.departmentName }}</h3>
+  <mat-list-item>
+    <a [routerLink]="['/wizytowki', 'szefowie', manager.login]"
+       routerLinkActive="router-link-active"
+       (mouseover)="users_data=manager"
+       [ngbPopover]="popContent" [popoverTitle]="popTitle"
+       triggers="mouseenter:mouseleave">
+    <div mat-line>{{ manager.name }} {{ manager.surname }}</div>
+    </a>
+    <!-- <div mat-line> {{ manager.position }} </div> -->
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <div class="ml-5">
+    <app-structure-worker [users]="users" [supervisorId]="manager.id"></app-structure-worker>
+  </div>
+</ng-container>
+
+<!-- </ng-container> -->
+<ng-template #popTitle><b>{{users_data.name}} {{users_data.surname}}</b></ng-template>
+<ng-template #popContent>
+  <!-- <img [src]="'/.grafika/zdjecia/lista/' + users_data.login" [alt]="users_data.name + ' ' + users_data.surname"> -->
+  <ng-container *ngIf="users_data.currentLeave === null; else unavailable">
+    <mat-list>
+      <mat-list-item *ngIf="users_data.phoneNumber">
+        Tel. {{users_data.phoneNumber}}
+      </mat-list-item>
+      <mat-list-item *ngIf="users_data.mobilePhoneNumber">
+        Kom. {{users_data.mobilePhoneNumber}}
+      </mat-list-item>
+      <!-- <mat-list-item *ngIf="users_data.mobilePhoneNumber">
+        <div id="floor-plan" style="position: relative; float: right;">
+          <img src="/.grafika/plan/pietro_0_srednie.png" alt="">
+          <img src="/.grafika/ikonki/male/tabliczka.png" alt="" style="position: absolute;left: 70.11999999999999px;top: -25.9px;"><span style="position: absolute;left: 70.11999999999999px;top: -20.9px;font-size: 10px; font-weight: bold; width: 49px; text-align: center;">004</span>
+        </div>
+      </mat-list-item> -->
+    </mat-list>
+
+  </ng-container>
+</ng-template>
+<ng-template #unavailable>
+  {{users_data.name}} {{ message.UnAvailable }}
+</ng-template>

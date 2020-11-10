@@ -40,6 +40,17 @@ export class DepartmentUserEffects {
     ))
   );
 
+  createDepartmentUsers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(DepartmentUserActions.addOneDepartmentUser),
+      concatMap( action => this.dataEmployeeService.addEmployee(action.user)
+      .pipe(
+        map( val => DepartmentUserActions.addedOneDepartmentUser(action))
+      )
+
+    ))
+  );
+
 
 
 }

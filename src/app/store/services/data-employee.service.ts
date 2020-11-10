@@ -17,4 +17,8 @@ export class DataEmployeeService {
   patchEmployee(data: User) {
     return this.http.patch(`${this.apiUrlBase}${this.apiUrlPart}/${data.id}`, data);
   }
+
+  addEmployee(data: User) {
+    return this.http.post(`${this.apiUrlBase}${this.apiUrlPart}`, data);
+  }
 }

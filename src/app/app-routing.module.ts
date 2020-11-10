@@ -1,3 +1,4 @@
+import { PreloaderStructureResolver } from './structure/resolver/preloader-structure.resolver';
 import { PreloaderResolver } from './vacations/resolver/preloader.resolver';
 import { PreloaderCardsResolver } from './cards/resolver/preloader-cards.resolver';
 import { AuthGuard } from './core/auth/guard/auth.guard';
@@ -26,6 +27,12 @@ const routes: Routes = [
     loadChildren: () => import('./cards/cards.module').then(m => m.CardsModule),
     canActivate: [AuthGuard],
     resolve: { data: PreloaderCardsResolver }
+  },
+  {
+    path: 'struktura_firmy',
+    loadChildren: () => import('./structure/structure.module').then(m => m.StructureModule),
+    canActivate: [AuthGuard],
+    resolve: { data: PreloaderStructureResolver }
   }
 ];
 

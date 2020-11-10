@@ -9,6 +9,7 @@
 // @import "~bootstrap/scss/navbar";
 @import "~bootstrap/scss/utilities";
 @import "~bootstrap/scss/alert";
+@import "~bootstrap/scss/popover";
 @import "reset";
 
 html, body { height: 100%; }
@@ -41,3 +42,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding: 0!important
   ;
 }
+
+/* Importing Bootstrap SCSS file. */
+// @import '~bootstrap/scss/bootstrap';

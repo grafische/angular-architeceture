@@ -5,6 +5,13 @@ export interface UserWorkingHours {
   startHour: string;
 }
 
+export interface CurrentLeave {
+  endDate: Date;
+  leaveTypeId: number;
+  leaveTypeName: string;
+  startDate: Date;
+}
+
 export interface User {
   birtday: Date;
   communicatorNumber: string;
@@ -16,10 +23,10 @@ export interface User {
   id: number;
   level: string;
   login: string;
-  mobilePhoneNumber: string;
   name: string;
   nameday: Date;
   nickname: string;
+  mobilePhoneNumber: string;
   phoneNumber: string;
   photoUrl: string;
   position: string;
@@ -31,4 +38,21 @@ export interface User {
   surname: string;
   wwwAddress: string;
   authToken?: string;
+  currentLeave: CurrentLeave | null;
+  departmentSymbol: string;
+}
+
+export interface UserStructure {
+  id: number;
+  name: string;
+  surname: string;
+  login: string;
+  position: string;
+  level: string;
+  departmentName: string;
+  supervisorId: number;
+  departmentSymbol: string;
+  currentLeave: CurrentLeave | null;
+  mobilePhoneNumber: string;
+  phoneNumber: string;
 }

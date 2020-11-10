@@ -1,5 +1,5 @@
+import { menu } from './../../../core/const/menu.const';
 import { Menu } from './../../../shared/models/menu.model';
-import { menu_data } from './../../menu.data';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { User } from './../../../core/model/user.model';
@@ -11,7 +11,7 @@ import { User } from './../../../core/model/user.model';
 })
 export class HeaderPageComponent implements OnInit {
 
-  readonly menu_data: Menu[] = menu_data;
+  readonly menu_data: Menu[] = menu;
   @Input() sidenav: MatSidenav;
   @Input() user: User;
 

@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title class="d-flex align-items-start">
+            Name structure
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="container mt-4">
+            <div class="row">
+              <div class="col-12">
+                <ng-container *ngIf="departmenSelecttUser$ | async | flatUsers as Users">
+                  <ng-container *ngIf="Users | filterDirectors:structure[structure.BOARD] as Boards">
+                    <app-structure-board [users]="Users" [boards]="Boards"></app-structure-board>
+                  </ng-container>
+                  <ng-container *ngIf="Users | filterDirectors:structure[structure.DIRECTOR] as Directors">
+                    <app-structure-director [users]="Users" [directors]="Directors"></app-structure-director>
+                  </ng-container>
+
+                </ng-container>
+
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

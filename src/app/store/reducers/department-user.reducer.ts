@@ -43,6 +43,9 @@ export const reducer = createReducer(
   on(DepartmentUserActions.updatedDepartmentUser,
     (state, action) => adapter.updateOne(action.departmentUser, state)
   ),
+  on(DepartmentUserActions.addedOneDepartmentUser,
+    (state, action) => adapter.updateOne(action.departmentUser, state)
+  ),
   on(DepartmentUserActions.updateDepartmentUsers,
     (state, action) => adapter.updateMany(action.departmentUsers, state)
   ),

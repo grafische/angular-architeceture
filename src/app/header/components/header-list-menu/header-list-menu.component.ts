@@ -1,6 +1,6 @@
+import { Component, Input } from '@angular/core';
+import { menu } from './../../../core/const/menu.const';
 import { Menu } from './../../../shared/models/menu.model';
-import { Component, OnInit, Input } from '@angular/core';
-import { menu_data } from '../../menu.data';
 
 @Component({
   selector: 'app-header-list-menu',
@@ -8,6 +8,6 @@ import { menu_data } from '../../menu.data';
   styleUrls: ['./header-list-menu.component.scss']
 })
 export class HeaderListMenuComponent {
-  @Input() data: Menu[] = menu_data;
+  @Input() data: Menu[] = menu;
   @Input() customClass: string;
 }

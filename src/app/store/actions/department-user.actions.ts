@@ -90,7 +90,12 @@ export const clearDepartmentUsers = createAction(
 );
 
 export const loadDepartmentUsersFailure = createAction(
-  '[DepartmentUser/API] Clear DepartmentUsers',
+  '[DepartmentUser/API] Load departmentsUsers error DepartmentUsers',
+  props<{ error }>()
+);
+
+export const upgradeDepartmentUsersFailure = createAction(
+  '[DepartmentUser/API] Upgrade departmentsUsers error DepartmentUsers',
   props<{ error }>()
 );
 

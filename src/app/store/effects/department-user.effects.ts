@@ -16,14 +16,14 @@ export class DepartmentUserEffects {
   constructor(
     private actions$: Actions,
     private datadepartmentUserService: DataDepartmentUserService,
-    private dataEmployeeService: DataEmployeeService ) {}
+    private dataEmployeeService: DataEmployeeService) { }
 
   loadDepartmentUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DepartmentUserActions.enterDepartmentUsers),
-      exhaustMap( () => this.datadepartmentUserService.getDepartmentUsers().pipe(
-        map( departmentUsers =>  DepartmentUserActions.loadDepartmentUsers({ departmentUsers })),
-        catchError( error => of( DepartmentUserActions.loadDepartmentUsersFailure({ error }) )
+      exhaustMap(() => this.datadepartmentUserService.getDepartmentUsers().pipe(
+        map(departmentUsers => DepartmentUserActions.loadDepartmentUsers({ departmentUsers })),
+        catchError(error => of(DepartmentUserActions.loadDepartmentUsersFailure({ error }))
         )
       ))
     )
@@ -32,23 +32,31 @@ export class DepartmentUserEffects {
   updateDepartmentUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DepartmentUserActions.updateDepartmentUser),
-      concatMap( action => this.dataEmployeeService.patchEmployee(action.user)
-      .pipe(
-        map( val => DepartmentUserActions.updatedDepartmentUser(action))
-      )
+      concatMap(action => this.dataEmployeeService.patchEmployee(action.user)
+        .pipe(
+          map(val => DepartmentUserActions.updatedDepartmentUser(action)),
+        ),
 
-    ))
+      ),
+
+      catchError(error => of(DepartmentUserActions.upgradeDepartmentUsersFailure({ error })))
+    )
   );
 
   createDepartmentUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(DepartmentUserActions.addOneDepartmentUser),
-      concatMap( action => this.dataEmployeeService.addEmployee(action.user)
-      .pipe(
-        map( val => DepartmentUserActions.addedOneDepartmentUser(action))
-      )
+      concatMap(action => this.dataEmployeeService.addEmployee(action.user)
+        .pipe(
+          map(val => DepartmentUserActions.addedOneDepartmentUser(action))
+        )
 
-    ))
+      ),
+      catchError(error => {
+        return of(DepartmentUserActions.upgradeDepartmentUsersFailure({ error }))
+        }
+      )
+    )
   );
 
 

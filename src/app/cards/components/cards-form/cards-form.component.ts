@@ -1,17 +1,20 @@
-import { structure } from './../../../core/const/structure.const';
-import { Message } from './../../../core/model/message.enum';
-import { daysWorking } from './../../../core/const/days-working.const';
-import { FormMode } from './../../../core/model/form-mode.enum';
-import { Component, Input, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import * as DepartmentUserActions from '../../../store/actions/department-user.actions';
+import * as SelectorsDepartmentUsers from '../../../store/selectors/department-user.selectors';
+import { daysWorking } from './../../../core/const/days-working.const';
+import { structure } from './../../../core/const/structure.const';
 import { Days } from './../../../core/model/days.enum';
 import { DepartmentUser } from './../../../core/model/department-user.model';
 import { Department } from './../../../core/model/department.model';
+import { ErrorInformation } from './../../../core/model/error-Information.model';
+import { FormMode } from './../../../core/model/form-mode.enum';
+import { Message } from './../../../core/model/message.enum';
 import { User, UserWorkingHours } from './../../../core/model/user.model';
 import { State } from './../../../store';
-import { Event } from '@angular/router';
+
 
 @Component({
   selector: 'app-cards-form',
@@ -43,6 +46,8 @@ export class CardsFormComponent implements OnInit {
   @Input() departmentsUser: DepartmentUser[];
 
   private __departmentUser: DepartmentUser;
+  Error$: Observable<ErrorInformation>;
+
   days = Days;
   daysArray: Array<any>;
   formMode = FormMode;
@@ -60,6 +65,7 @@ export class CardsFormComponent implements OnInit {
 
 
   ngOnInit() {
+    this.Error$ = this.store.select(SelectorsDepartmentUsers.getErrorDepartmentUser);
     this.daysArray = this.daysToArray();
     if (this.mode === this.formMode.ADD) {
       this.empoloyeesForm.push(this.employeeForm());
@@ -176,7 +182,7 @@ export class CardsFormComponent implements OnInit {
       departmentId: [user?.departmentId || null, Validators.required],
       departmentName: [user?.departmentName || null, Validators.required],
       email: [user?.email, Validators.required] || [null, Validators.required],
-      supervisorId: user?.supervisorId || null,
+      supervisorId: [user?.supervisorId, Validators.required] || [null, Validators.required],
       supervisorName: user?.supervisorName || null,
       level: [user?.level, Validators.required] || [null, Validators.required],
       login: [user?.login, Validators.required] || [null, Validators.required],
@@ -184,7 +190,7 @@ export class CardsFormComponent implements OnInit {
       surname: [user?.surname, Validators.required] || [null, Validators.required],
       nickname: user?.nickname || null,
       position: user?.position || null,
-      room: user?.room || null,
+      room: [user?.room, Validators.required] || [null, Validators.required],
       phoneNumber: user?.phoneNumber || null,
       mobilePhoneNumber: user?.mobilePhoneNumber || null,
       extensionNumber: user?.extensionNumber || null,

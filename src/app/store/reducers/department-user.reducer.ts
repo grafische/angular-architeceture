@@ -1,13 +1,14 @@
-import { Action, createReducer, on } from '@ngrx/store';
-import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
-import { DepartmentUser } from './../../core/model/department-user.model';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { createReducer, on } from '@ngrx/store';
 import * as DepartmentUserActions from '../actions/department-user.actions';
+import { DepartmentUser } from './../../core/model/department-user.model';
+import { ErrorInformation } from './../../core/model/error-Information.model';
 
 export const DepartmentUsersFeatureKey = 'DepartmentUsers';
 
 export interface State extends EntityState<DepartmentUser> {
   // additional entities state properties
-  error: Error;
+  error: ErrorInformation;
 }
 
 export function selectDepartmentUserId(a: DepartmentUser): number {
@@ -63,6 +64,9 @@ export const reducer = createReducer(
   ),
   on(DepartmentUserActions.selectDepartmentUser,
     (state, action) => (action.departmentUsers, action.id, state)
+  ),
+  on(DepartmentUserActions.upgradeDepartmentUsersFailure,
+    (state, action) => adapter.getInitialState({ ...state, error: action.error })
   ),
 );
 

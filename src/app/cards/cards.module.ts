@@ -17,10 +17,11 @@ import { CardsAddComponent } from './components/cards-add/cards-add.component';
 import { CardsHoursUniquePipe } from './pipes/cards-hours-unique.pipe';
 import { CardsHoursOrderPipe } from './pipes/cards-hours-order.pipe';
 import { DepartmentUsersPipe } from './pipes/department-users.pipe';
+import { ValidationBackendDirective } from './directives/validation-backend.directive';
 
 
 @NgModule({
-  declarations: [CardsPageComponent, CardsListComponent, CardsDepartmentComponent, CardsEmployeesComponent, CardsFilterPipe, CardsEmployeeFilterPipe, CardsDetailComponent, CardsFormComponent, CardsEditComponent, CardsAddComponent, CardsHoursUniquePipe, CardsHoursOrderPipe, DepartmentUsersPipe],
+  declarations: [CardsPageComponent, CardsListComponent, CardsDepartmentComponent, CardsEmployeesComponent, CardsFilterPipe, CardsEmployeeFilterPipe, CardsDetailComponent, CardsFormComponent, CardsEditComponent, CardsAddComponent, CardsHoursUniquePipe, CardsHoursOrderPipe, DepartmentUsersPipe, ValidationBackendDirective],
   imports: [
     SharedModule,
     CardsRoutingModule,

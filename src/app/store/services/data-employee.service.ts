@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -18,7 +19,7 @@ export class DataEmployeeService {
     return this.http.patch(`${this.apiUrlBase}${this.apiUrlPart}/${data.id}`, data);
   }
 
-  addEmployee(data: User) {
-    return this.http.post(`${this.apiUrlBase}${this.apiUrlPart}`, data);
+  addEmployee(data: User): Observable<User> {
+    return this.http.post<User>(`${this.apiUrlBase}${this.apiUrlPart}`, data);
   }
 }

@@ -22,7 +22,14 @@
                             </mat-option>
                           </mat-select>
                           <mat-error *ngIf="control.get('departmentId').hasError('required')">
-                            Dział jest <strong>wymagany</strong>
+                            {{ message.InputRequire }}
+                          </mat-error>
+                          <mat-error *ngIf="control.get('departmentId').hasError('departmentIdBackend')">
+                            <ng-container *ngFor="let invalid of ErrorInvalids$ | async">
+                              <ng-container *ngIf="invalid.field === 'departmentId'">
+                                {{ invalid.message }}
+                              </ng-container>
+                            </ng-container>
                           </mat-error>
                         </mat-form-field>
                         <input type="hidden" formControlName="departmentName">
@@ -37,6 +44,16 @@
                               {{ supervisor.name }} {{ supervisor.surname }}
                             </mat-option>
                           </mat-select>
+                          <mat-error *ngIf="control.get('supervisorId').hasError('required')">
+                            {{ message.InputRequire }}
+                          </mat-error>
+                          <mat-error *ngIf="control.get('supervisorId').hasError('supervisorIdBackend')">
+                            <ng-container *ngFor="let invalid of ErrorInvalids$ | async">
+                              <ng-container *ngIf="invalid.field === 'supervisorId'">
+                                {{ invalid.message }}
+                              </ng-container>
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -49,16 +66,36 @@
                               {{ level.name }}
                             </mat-option>
                           </mat-select>
+                          <mat-error *ngIf="control.get('level').hasError('required')">
+                            {{ message.InputRequire }}
+                          </mat-error>
+                          <mat-error *ngIf="control.get('level').hasError('levelBackend')">
+                            <ng-container *ngFor="let invalid of ErrorInvalids$ | async">
+                              <ng-container *ngIf="invalid.field === 'level'">
+                                {{ invalid.message }}
+                              </ng-container>
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-12">
                         <mat-form-field class="full-width">
-                          <input matInput placeholder="Login:" formControlName="login" value="" required>
-                          <!-- <mat-error *ngIf=" empoloyeesForm.controls['login'].hasError('required')">
-                            Dział jest <strong>wymagany</strong>
-                          </mat-error> -->
+                          <input matInput placeholder="Login:" formControlName="login" value="" pattern="[a-zA-Z\d]*" required>
+                          <mat-error *ngIf="control.get('login').hasError('required')">
+                            {{ message.InputRequire }}
+                          </mat-error>
+                          <mat-error *ngIf="control.get('login').hasError('pattern')">
+                            {{ message.InputPatternNoSign }}
+                          </mat-error>
+                          <mat-error *ngIf="control.get('login').hasError('loginBackend')">
+                            <ng-container *ngFor="let invalid of ErrorInvalids$ | async">
+                              <ng-container *ngIf="invalid.field === 'login'">
+                                {{ invalid.message }}
+                              </ng-container>
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -66,6 +103,16 @@
                       <div class="col-12">
                         <mat-form-field class="full-width">
                           <input matInput placeholder="Imię:" formControlName="name" value="" required>
+                          <mat-error *ngIf="control.get('name').hasError('required')">
+                            {{ message.InputRequire }}
+                          </mat-error>
+                          <mat-error *ngIf="control.get('name').hasError('nameBackend')">
+                            <ng-container *ngFor="let invalid of ErrorInvalids$ | async">
+                              <ng-container *ngIf="invalid.field === 'name'">
+                                {{ invalid.message }}
+                              </ng-container>
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -73,6 +120,16 @@
                       <div class="col-12">
                         <mat-form-field class="full-width">
                           <input matInput placeholder="Nazwisko:" formControlName="surname" value="" required>
+                          <mat-error *ngIf="control.get('surname').hasError('required')">
+                            {{ message.InputRequire }}
+                          </mat-error>
+                          <mat-error *ngIf="control.get('surname').hasError('surnameBackend')">
+                            <ng-container *ngFor="let invalid of ErrorInvalids$ | async">
+                              <ng-container *ngIf="invalid.field === 'surname'">
+                                {{ invalid.message }}
+                              </ng-container>
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -87,20 +144,53 @@
                       <div class="col-12">
                         <mat-form-field class="full-width">
                           <input matInput placeholder="Stanowisko:" formControlName="position" value="" required>
+                          <mat-error *ngIf="control.get('position').hasError('required')">
+                            {{ message.InputRequire }}
+                          </mat-error>
+                          <mat-error *ngIf="control.get('position').hasError('positionBackend')">
+                            <ng-container *ngFor="let invalid of ErrorInvalids$ | async">
+                              <ng-container *ngIf="invalid.field === 'position'">
+                                {{ invalid.message }}
+                              </ng-container>
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-12">
                         <mat-form-field class="full-width">
-                          <input matInput placeholder="Pokój:" formControlName="room" value="" required>
+                          <input fieldName="room"  matInput placeholder="Pokój:" pattern="[a-zA-Z\d]*" formControlName="room" value="" required>
+                          <mat-error *ngIf="control.get('room').hasError('required')">
+                            {{ message.InputRequire }}
+                          </mat-error>
+                          <mat-error *ngIf="control.get('room').hasError('pattern')">
+                            {{ message.InputPatternNoSign }}
+                          </mat-error>
+                          <mat-error *ngIf="control.get('room').hasError('roomBackend')">
+                            <ng-container *ngFor="let invalid of ErrorInvalids$ | async">
+                              <ng-container *ngIf="invalid.field === 'room'">
+                                {{ invalid.message }}
+                              </ng-container>
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-12">
                         <mat-form-field class="full-width">
-                          <input matInput placeholder="E-mail:" formControlName="email" value="" required>
+                          <input matInput placeholder="E-mail:" formControlName="email" value="" email required>
+                          <mat-error *ngIf="control.get('email').hasError('required')">
+                            {{ message.InputRequire }}
+                          </mat-error>
+                          <mat-error *ngIf="control.get('email').hasError('emailBackend')">
+                            <ng-container *ngFor="let invalid of ErrorInvalids$ | async">
+                              <ng-container *ngIf="invalid.field === 'email'">
+                                {{ invalid.message }}
+                              </ng-container>
+                            </ng-container>
+                          </mat-error>
                         </mat-form-field>
                       </div>
                     </div>
@@ -229,7 +319,12 @@
               <strong>{{ message.FormInValid }}</strong>
             </div>
             <div *ngIf="Error$ | async as ErrorInformation" class="alert alert-primary" role="alert">
-              <strong>{{ ErrorInformation.error.message }}</strong>
+              <ng-container *ngIf="ErrorInformation.error.invalidFields">
+                {{ message.FormInValid }}
+              </ng-container>
+              <ng-container *ngIf="ErrorInformation.error.message">
+                {{ ErrorInformation.error.message }}
+              </ng-container>
             </div>
           </mat-card-footer>
         </mat-card>

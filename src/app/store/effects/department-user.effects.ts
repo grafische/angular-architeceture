@@ -1,11 +1,11 @@
-import { DataEmployeeService } from './../services/data-employee.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { exhaustMap, map, catchError, tap, concatMap } from 'rxjs/operators';
-
-import { DataDepartmentUserService } from './../services/data-department-user.service';
-import * as DepartmentUserActions from '../actions/department-user.actions';
 import { of } from 'rxjs';
+import { catchError, concatMap, exhaustMap, map, tap } from 'rxjs/operators';
+import * as DepartmentUserActions from '../actions/department-user.actions';
+import { DataDepartmentUserService } from './../services/data-department-user.service';
+import { DataEmployeeService } from './../services/data-employee.service';
+
 
 
 @Injectable()
@@ -35,11 +35,11 @@ export class DepartmentUserEffects {
       concatMap(action => this.dataEmployeeService.patchEmployee(action.user)
         .pipe(
           map(val => DepartmentUserActions.updatedDepartmentUser(action)),
+          catchError(error => of(DepartmentUserActions.upgradeDepartmentUsersFailure({ error })))
         ),
 
       ),
 
-      catchError(error => of(DepartmentUserActions.upgradeDepartmentUsersFailure({ error })))
     )
   );
 
@@ -48,17 +48,15 @@ export class DepartmentUserEffects {
       ofType(DepartmentUserActions.addOneDepartmentUser),
       concatMap(action => this.dataEmployeeService.addEmployee(action.user)
         .pipe(
-          map(val => DepartmentUserActions.addedOneDepartmentUser(action))
+          map(val => DepartmentUserActions.addedOneDepartmentUser(action)),
+          catchError(error => {
+            return of(DepartmentUserActions.upgradeDepartmentUsersFailure({ error }))
+            }
+          )
         )
-
       ),
-      catchError(error => {
-        return of(DepartmentUserActions.upgradeDepartmentUsersFailure({ error }))
-        }
-      )
     )
   );
-
 
 
 }

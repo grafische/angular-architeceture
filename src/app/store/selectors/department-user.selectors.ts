@@ -1,5 +1,6 @@
+import { ErrorInformation, InvalidFields } from './../../core/model/error-Information.model';
 import { User } from './../../core/model/user.model';
-import { createSelector } from '@ngrx/store';
+import { createSelector, props } from '@ngrx/store';
 import * as fromDepartmentUser from '../reducers/department-user.reducer';
 import { State } from './../';
 import { Structure } from './../../core/enum/structure.enum';
@@ -94,6 +95,19 @@ export const getErrorDepartmentUser = createSelector(
   selectDepartmentUsersState,
   state => state.error
 );
+
+// export const getErrorDepartmentUserInvalidField = (invalid: string) => createSelector(
+//   getErrorDepartmentUser,
+//   (errorInformation: ErrorInformation) => errorInformation.error.invalidFields
+//     .filter( invalidField => invalidField.field === invalid )[0]
+// );
+
+export const getErrorDepartmentUserInvalidField = createSelector(
+  getErrorDepartmentUser,
+  (errorInformation: ErrorInformation) => errorInformation?.error?.invalidFields
+);
+
+
 
 export const boardDepartmentLevel = createSelector(
   selectAllDepartmentUser,

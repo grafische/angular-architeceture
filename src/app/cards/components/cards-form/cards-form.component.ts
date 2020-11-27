@@ -1,3 +1,4 @@
+import { tap } from 'rxjs/operators';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
@@ -9,7 +10,7 @@ import { structure } from './../../../core/const/structure.const';
 import { Days } from './../../../core/model/days.enum';
 import { DepartmentUser } from './../../../core/model/department-user.model';
 import { Department } from './../../../core/model/department.model';
-import { ErrorInformation } from './../../../core/model/error-Information.model';
+import { ErrorInformation, InvalidFields } from './../../../core/model/error-Information.model';
 import { FormMode } from './../../../core/model/form-mode.enum';
 import { Message } from './../../../core/model/message.enum';
 import { User, UserWorkingHours } from './../../../core/model/user.model';
@@ -47,6 +48,7 @@ export class CardsFormComponent implements OnInit {
 
   private __departmentUser: DepartmentUser;
   Error$: Observable<ErrorInformation>;
+  ErrorInvalids$: Observable<InvalidFields[]>;
 
   days = Days;
   daysArray: Array<any>;
@@ -65,7 +67,20 @@ export class CardsFormComponent implements OnInit {
 
 
   ngOnInit() {
-    this.Error$ = this.store.select(SelectorsDepartmentUsers.getErrorDepartmentUser);
+    this.Error$ = this.store.select(SelectorsDepartmentUsers.getErrorDepartmentUser).pipe(
+      tap({
+        next: (value: ErrorInformation) => {
+          if(value?.error?.invalidFields) {
+            value.error.invalidFields.forEach( invalidField => {
+
+              return this.empoloyeesForm.at(0).get(invalidField.field).setErrors({ [invalidField.field + 'Backend']: true });
+            });
+          }
+          //this.empoloyeesForm.at(0).get(value.error.invalidFields).setErrors({ afterSubmit: true });
+        }
+      })
+    );
+    this.ErrorInvalids$ = this.store.select(SelectorsDepartmentUsers.getErrorDepartmentUserInvalidField);
     this.daysArray = this.daysToArray();
     if (this.mode === this.formMode.ADD) {
       this.empoloyeesForm.push(this.employeeForm());
@@ -97,6 +112,7 @@ export class CardsFormComponent implements OnInit {
   onSubmit() {
     if(!this.cardForm.invalid) {
       this.formValid = true;
+
       if (this.mode === this.formMode.UPGRADE) {
         const users: User[] = this.empoloyeesForm.value;
         const user: User = users.filter(user => user.login === this.dataEmployee.login)[0];
@@ -121,6 +137,7 @@ export class CardsFormComponent implements OnInit {
         const departmentUser = { id: departmentIdNewUser, changes: this.cardForm.value };
         const user = this.empoloyeesForm.at(0).value;
         this.store.dispatch(DepartmentUserActions.addOneDepartmentUser({ departmentUser, user }));
+
       }
     } else {
       this.formValid = false;

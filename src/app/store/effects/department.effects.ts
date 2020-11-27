@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { exhaustMap, map, catchError, tap } from 'rxjs/operators';
 
-import { DataDepartmentService } from './../services/data-Department.service';
+import { DataDepartmentService } from './../services/data-department.service';
 import * as DepartmentActions from '../actions/department.actions';
 import { of } from 'rxjs';
+import { catchError, exhaustMap, map } from 'rxjs/operators';
 
 
 

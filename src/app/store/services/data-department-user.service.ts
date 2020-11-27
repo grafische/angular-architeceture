@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
 import { DepartmentUser } from './../../core/model/department-user.model';
 import { map, mergeMap, scan, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'

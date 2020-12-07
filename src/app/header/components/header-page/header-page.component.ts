@@ -1,7 +1,7 @@
-import { menu } from './../../../core/const/menu.const';
-import { Menu } from './../../../shared/models/menu.model';
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { menu } from './../../../core/const/menu.const';
+import { Menu } from './../../../core/model/menu.model';
 import { User } from './../../../core/model/user.model';
 
 @Component({

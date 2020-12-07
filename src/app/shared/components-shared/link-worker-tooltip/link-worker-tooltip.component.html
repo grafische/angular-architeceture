@@ -1,0 +1,23 @@
+<a [routerLink]="['/wizytowki', worker.departmentSymbol, worker.login]" routerLinkActive="router-link-active"
+   [ngbPopover]="popContent" [popoverTitle]="popTitle" triggers="mouseenter:mouseleave">
+  {{ worker.name }} {{ worker.surname }}
+</a>
+<!-- a remove (mouseover)="worker=worker" -->
+<ng-template #popTitle><b>{{worker.name}} {{worker.surname}}</b></ng-template>
+<ng-template #popContent>
+  <!-- <img [src]="'/.grafika/zdjecia/lista/' + worker.login" [alt]="worker.name + ' ' + worker.surname"> -->
+  <ng-container *ngIf="worker.currentLeave === null; else unavailable">
+    <mat-list>
+      <mat-list-item *ngIf="worker.phoneNumber">
+        Tel. {{worker.phoneNumber}}
+      </mat-list-item>
+      <mat-list-item *ngIf="worker.mobilePhoneNumber">
+        Kom. {{worker.mobilePhoneNumber}}
+      </mat-list-item>
+    </mat-list>
+    <app-floor [room]="worker.room" [roomType]="roomType.MIDDLE"></app-floor>
+  </ng-container>
+</ng-template>
+<ng-template #unavailable>
+  {{worker.name}} {{ message.UnAvailable }}
+</ng-template>

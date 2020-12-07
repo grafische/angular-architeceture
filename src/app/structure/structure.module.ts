@@ -1,5 +1,6 @@
+import { ComponentsSharedModule } from './../shared/components-shared/components-shared.module';
+import { NgBootstrapModule } from './../shared/ng-bootstrap/ng-bootstrap.module';
 import { NgModule } from '@angular/core';
-import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { SharedModule } from '../shared/shared.module';
 import { DepartmentUserEffects } from '../store/effects/department-user.effects';
@@ -24,13 +25,15 @@ import { StructureRoutingModule } from './structure-routing.module';
   declarations: [StructurePageComponent, StructureBoardComponent, StructureDirectorComponent, StructureViceDirectorComponent, StructureDepartmentManagerComponent, StructureWorkerComponent, FilterSupervisorPipe, FilterWorkersPipe, FilterDirectorsPipe, FlatDirectorsPipe, FlatUsersPipe, StructureWorkerSubComponent],
   imports: [
     SharedModule,
+    NgBootstrapModule,
+    ComponentsSharedModule,
     StructureRoutingModule,
     EffectsModule.forFeature([
       VacationEffects,
       DepartmentEffects,
       DepartmentUserEffects
-    ]),
-    NgbPopoverModule
+    ])
   ]
 })
 export class StructureModule { }
+

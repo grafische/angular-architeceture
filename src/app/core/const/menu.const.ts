@@ -1,4 +1,5 @@
-import { Menu } from './../../shared/models/menu.model';
+import { Menu } from '../model/menu.model';
+
 export const menu: Menu[] = [
   {
     label: "Urlopy",

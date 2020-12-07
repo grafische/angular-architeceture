@@ -2,11 +2,12 @@
   <ng-container *ngFor="let worker of Workers">
     <mat-list-item>
       <div mat-line>
-        <a [routerLink]="['/wizytowki', worker.departmentSymbol, worker.login]" routerLinkActive="router-link-active"
+        <!-- <a [routerLink]="['/wizytowki', worker.departmentSymbol, worker.login]" routerLinkActive="router-link-active"
           (mouseover)="users_data=worker" [ngbPopover]="popContent" [popoverTitle]="popTitle"
           triggers="mouseenter:mouseleave">
           {{ worker.name }} {{ worker.surname }}
-        </a>
+        </a> -->
+        <app-link-worker-tooltip [worker]="worker"></app-link-worker-tooltip>
       </div>
       <!-- <div mat-line> {{ worker.position }} </div> -->
     </mat-list-item>

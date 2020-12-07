@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { menu } from './../../../core/const/menu.const';
-import { Menu } from './../../../shared/models/menu.model';
+import { Menu } from './../../../core/model/menu.model';
 
 @Component({
   selector: 'app-header-list-menu',

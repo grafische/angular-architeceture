@@ -15,6 +15,7 @@ export class FlatUsersPipe implements PipeTransform {
         surname: user.surname,
         login: user.login,
         position: user.position,
+        room: user.room,
         level: user.level,
         supervisorId: user.supervisorId,
         departmentName: user.departmentName,

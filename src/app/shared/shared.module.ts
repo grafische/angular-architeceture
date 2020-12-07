@@ -8,6 +8,5 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 @NgModule({
   imports: [ CommonModule, ReactiveFormsModule, FormsModule, MaterialModule, NgxMaterialTimepickerModule.setLocale('pl-PL') ],
   exports: [ ReactiveFormsModule, CommonModule, FormsModule, MaterialModule, NgxMaterialTimepickerModule ],
-  declarations: [  ]
 })
 export class SharedModule { }

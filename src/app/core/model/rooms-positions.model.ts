@@ -3,3 +3,8 @@ export interface RoomsPositions {
   position_x: number;
   position_y: number;
 }
+
+export interface RoomsCounting {
+  left: number;
+  top: number;
+}

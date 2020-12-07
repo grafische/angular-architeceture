@@ -49,6 +49,7 @@ export interface UserStructure {
   login: string;
   position: string;
   level: string;
+  room: string;
   departmentName: string;
   supervisorId: number;
   departmentSymbol: string;

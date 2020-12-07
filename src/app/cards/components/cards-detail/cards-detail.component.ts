@@ -1,9 +1,9 @@
-import { rangeDaysWorking } from './../../../core/const/days-working.const';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import * as SelectorsDepartmentUsers from '../../../store/selectors/department-user.selectors';
 import * as SelectorsRoute from '../../../store/selectors/route.selectors';
+import { RoomType } from './../../../core/enum/room-type.enum';
 import { Days, RangeDaysWorking } from './../../../core/model/days.enum';
 import { User } from './../../../core/model/user.model';
 import { State } from './../../../store';
@@ -22,6 +22,7 @@ export class CardsDetailComponent implements OnInit {
   departmentAll$: Observable<any>;
   days = Days;
   rangeDaysWorking = RangeDaysWorking;
+  roomType = RoomType;
 
   constructor(
     private store: Store<State>

@@ -1,0 +1,30 @@
+:host {
+  display: inline-block;
+}
+
+.floor-plan {
+  position: relative;
+  display: inline-block;
+
+  span {
+    position: absolute;
+    display: block;
+    font-size: 10px;
+    font-weight: bold;
+    width: 49px;
+    height: 39px;
+    text-align: center;
+    background-image: url(/assets/floor/tabliczka.png);
+    background-repeat: no-repeat;
+  }
+
+  &.floor-plan--middle {
+    width: 166px;
+    height: 53px;
+  }
+
+  &.floor-plan--small {
+    width: 116px;
+    height: 38px;
+  }
+}

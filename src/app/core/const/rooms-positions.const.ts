@@ -1,4 +1,10 @@
-import { RoomsPositions } from "../model/rooms-positions.model";
+import { RoomsPositions, RoomsCounting } from "../model/rooms-positions.model";
+
+export const countRoom: RoomsCounting[] = [
+  { top: 87.43, left: 18.51 },
+  { top: 87.43, left: 18.51 },
+  { top: 87.43, left: 18.51 }
+];
 
 export const roomsPositions: RoomsPositions[] = [
 { room_name: "001", position_x: 95, position_y: 15},

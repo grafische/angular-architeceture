@@ -47,6 +47,7 @@
               <a [href]="'/api/employees/' + employee.id + '/vcf'" mat-button>Dane w formacie vCard</a>
             </mat-list-item>
           </mat-list>
+          <app-floor [room]="employee.room" [roomType]="roomType.MIDDLE"></app-floor>
         </mat-card-content>
       </ng-container>
     </div>

@@ -26,7 +26,7 @@ export const addedDepartmentUser = createAction(
 
 export const addOneDepartmentUser = createAction(
   '[DepartmentUser/API] AddOne DepartmentUser',
-  props<{ departmentUser: Update<DepartmentUser>, user:  User }>()
+  props<{ departmentUser, user: User }>()
 );
 
 export const addedOneDepartmentUser = createAction(

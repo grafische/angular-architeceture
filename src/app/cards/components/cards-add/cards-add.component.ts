@@ -6,7 +6,7 @@ import * as SelectorsDepartment from '../../../store/selectors/department.select
 import * as SelectorsDepartmentUsers from '../../../store/selectors/department-user.selectors';
 import { DepartmentUser } from './../../../core/model/department-user.model';
 import { Department } from './../../../core/model/department.model';
-import { FormMode } from './../../../core/model/form-mode.enum';
+import { FormMode } from '../../../core/enum/form-mode.enum';
 import { State } from './../../../store';
 
 @Component({

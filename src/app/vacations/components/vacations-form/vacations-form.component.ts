@@ -1,4 +1,4 @@
-import { Message } from './../../../core/model/message.enum';
+import { Message } from '../../../core/enum/message.enum';
 import { Department } from './../../../core/model/department.model';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';

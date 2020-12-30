@@ -1,8 +1,8 @@
-import { Message } from './../../../core/model/message.enum';
+import { Message } from '../../../core/enum/message.enum';
 import { Component, Input, OnInit } from '@angular/core';
 import { Structure } from './../../../core/enum/structure.enum';
 import { DepartmentUser } from './../../../core/model/department-user.model';
-import { User, UserStructure } from './../../../core/model/user.model';
+import { User, UserFlat } from './../../../core/model/user.model';
 
 @Component({
   selector: 'app-structure-board',
@@ -12,10 +12,10 @@ import { User, UserStructure } from './../../../core/model/user.model';
 export class StructureBoardComponent implements OnInit {
 
   @Input() department: DepartmentUser;
-  @Input() users: UserStructure[];
-  @Input() boards: UserStructure[];
+  @Input() users: UserFlat[];
+  @Input() boards: UserFlat[];
   structure = Structure;
-  users_data: UserStructure;
+  users_data: UserFlat;
   message = Message;
 
   constructor() { }

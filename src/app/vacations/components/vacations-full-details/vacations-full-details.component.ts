@@ -1,4 +1,4 @@
-import { Message } from './../../../core/model/message.enum';
+import { Message } from '../../../core/enum/message.enum';
 import { VacationType } from './../../../core/model/vacation-type.model';
 import { DepartmentVacationsLeave, DepartmentVacations } from './../../../core/model/department-vacations.model';
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';

@@ -38,11 +38,12 @@ export interface User {
   surname: string;
   wwwAddress: string;
   authToken?: string;
+  floor?: string;
   currentLeave: CurrentLeave | null;
   departmentSymbol: string;
 }
 
-export interface UserStructure {
+export interface UserFlat {
   id: number;
   name: string;
   surname: string;
@@ -56,4 +57,5 @@ export interface UserStructure {
   currentLeave: CurrentLeave | null;
   mobilePhoneNumber: string;
   phoneNumber: string;
+  floor?: string;
 }

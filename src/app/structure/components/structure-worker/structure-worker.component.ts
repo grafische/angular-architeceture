@@ -1,4 +1,4 @@
-import { UserStructure } from './../../../core/model/user.model';
+import { UserFlat } from './../../../core/model/user.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -7,7 +7,7 @@ import { Structure } from './../../../core/enum/structure.enum';
 import { DepartmentUser } from './../../../core/model/department-user.model';
 import { User } from './../../../core/model/user';
 import { State } from './../../../store';
-import { Message } from './../../../core/model/message.enum';
+import { Message } from '../../../core/enum/message.enum';
 
 @Component({
   selector: 'app-structure-worker',
@@ -17,9 +17,9 @@ import { Message } from './../../../core/model/message.enum';
 export class StructureWorkerComponent implements OnInit {
 
   @Input() supervisorId: number;
-  @Input() users: UserStructure[];
+  @Input() users: UserFlat[];
   structure = Structure;
-  users_data: UserStructure;
+  users_data: UserFlat;
   workerDepartmentUser$: Observable<DepartmentUser[]>;
   message = Message;
 

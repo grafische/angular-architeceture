@@ -1,4 +1,17 @@
 <div [class]="roomsClass">
-  <img src="assets/floor/pietro_1_srednie.png" alt="">
+  <ng-container [ngSwitch]="roomType">
+    <ng-container *ngSwitchCase="roomsType.BIG">
+      <img [src]="'assets/floor/pietro_' + roomDetails.floor + '_duze.png'" alt="">
+    </ng-container>
+    <ng-container *ngSwitchCase="roomsType.MIDDLE">
+      <img [src]="'assets/floor/pietro_' + roomDetails.floor + '_srednie.png'" alt="">
+    </ng-container>
+    <ng-container *ngSwitchCase="roomsType.SMALL">
+      <img [src]="'assets/floor/pietro_' + roomDetails.floor + '_male.png'" alt="">
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <img [src]="'assets/floor/pietro_' + roomDetails.floor + '_srednie.png'" alt="">
+    </ng-container>
+  </ng-container>
   <span appFloorMaps [top]="positionY" [left]="positionX">{{ room }}</span> <!--left: 118.25999999999999px;top: -20.9px;-->
 </div>

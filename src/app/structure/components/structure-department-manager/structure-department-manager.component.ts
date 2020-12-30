@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import * as SelectorsDepartmentUsers from '../../../store/selectors/department-user.selectors';
 import { Structure } from './../../../core/enum/structure.enum';
 import { DepartmentUser } from './../../../core/model/department-user.model';
-import { Message } from './../../../core/model/message.enum';
-import { UserStructure } from './../../../core/model/user.model';
+import { Message } from '../../../core/enum/message.enum';
+import { UserFlat } from './../../../core/model/user.model';
 import { State } from './../../../store';
 
 
@@ -18,10 +18,10 @@ import { State } from './../../../store';
 export class StructureDepartmentManagerComponent implements OnInit {
 
   @Input() supervisorId: number;
-  @Input() users: UserStructure[];
+  @Input() users: UserFlat[];
   structure = Structure;
   departmentManagerDepartmentUser$: Observable<DepartmentUser[]>;
-  users_data: UserStructure;
+  users_data: UserFlat;
   message = Message;
 
   constructor(

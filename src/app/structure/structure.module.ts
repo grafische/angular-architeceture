@@ -1,3 +1,4 @@
+import { PipesSharedModule } from './../shared/pipes-shared/pipes-shared.module';
 import { ComponentsSharedModule } from './../shared/components-shared/components-shared.module';
 import { NgBootstrapModule } from './../shared/ng-bootstrap/ng-bootstrap.module';
 import { NgModule } from '@angular/core';
@@ -17,16 +18,16 @@ import { FilterDirectorsPipe } from './pipes/filter-directors.pipe';
 import { FilterSupervisorPipe } from './pipes/filter-supervisor.pipe';
 import { FilterWorkersPipe } from './pipes/filter-workers.pipe';
 import { FlatDirectorsPipe } from './pipes/flat-directors.pipe';
-import { FlatUsersPipe } from './pipes/flat-users.pipe';
 import { StructureRoutingModule } from './structure-routing.module';
 
 
 @NgModule({
-  declarations: [StructurePageComponent, StructureBoardComponent, StructureDirectorComponent, StructureViceDirectorComponent, StructureDepartmentManagerComponent, StructureWorkerComponent, FilterSupervisorPipe, FilterWorkersPipe, FilterDirectorsPipe, FlatDirectorsPipe, FlatUsersPipe, StructureWorkerSubComponent],
+  declarations: [StructurePageComponent, StructureBoardComponent, StructureDirectorComponent, StructureViceDirectorComponent, StructureDepartmentManagerComponent, StructureWorkerComponent, FilterSupervisorPipe, FilterWorkersPipe, FilterDirectorsPipe, FlatDirectorsPipe, StructureWorkerSubComponent],
   imports: [
     SharedModule,
     NgBootstrapModule,
     ComponentsSharedModule,
+    PipesSharedModule,
     StructureRoutingModule,
     EffectsModule.forFeature([
       VacationEffects,

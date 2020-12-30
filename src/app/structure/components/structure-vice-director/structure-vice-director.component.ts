@@ -1,6 +1,6 @@
-import { Message } from './../../../core/model/message.enum';
+import { Message } from '../../../core/enum/message.enum';
 import { Component, Input, OnInit } from '@angular/core';
-import { UserStructure } from './../../../core/model/user.model';
+import { UserFlat } from './../../../core/model/user.model';
 
 @Component({
   selector: 'app-structure-vice-director',
@@ -10,8 +10,8 @@ import { UserStructure } from './../../../core/model/user.model';
 export class StructureViceDirectorComponent implements OnInit {
 
   @Input() supervisorId: number;
-  @Input() users: UserStructure[];
-  users_data: UserStructure;
+  @Input() users: UserFlat[];
+  users_data: UserFlat;
   message = Message;
 
   constructor() { }

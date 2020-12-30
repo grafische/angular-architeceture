@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Message } from './../../../core/model/message.enum';
-import { UserStructure } from './../../../core/model/user.model';
+import { Message } from '../../../core/enum/message.enum';
+import { UserFlat } from './../../../core/model/user.model';
 
 @Component({
   selector: 'app-structure-worker-sub',
@@ -10,8 +10,8 @@ import { UserStructure } from './../../../core/model/user.model';
 export class StructureWorkerSubComponent implements OnInit {
 
   @Input() supervisorId: number;
-  @Input() users: UserStructure[];
-  users_data: UserStructure;
+  @Input() users: UserFlat[];
+  users_data: UserFlat;
   message = Message;
 
   constructor() { }

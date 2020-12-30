@@ -1,6 +1,6 @@
 import { Vacation } from 'src/app/core/model/vacation.model';
 import { Update } from '@ngrx/entity';
-import { Message } from './../../core/model/message.enum';
+import { Message } from '../../core/enum/message.enum';
 import { TypeMessage } from './../../core/model/bottom-message.model';
 import { BottomSheetAlertComponent } from './../../shared/material/bottomsheet/bottom-sheet-alert.component';
 import { Injectable } from '@angular/core';

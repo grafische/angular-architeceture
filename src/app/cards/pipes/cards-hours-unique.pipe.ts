@@ -1,4 +1,4 @@
-import { Days, RangeDaysWorking } from './../../core/model/days.enum';
+import { Days, RangeDaysWorking } from '../../core/enum/days.enum';
 import { Pipe, PipeTransform } from '@angular/core';
 import { UserWorkingHours } from './../../core/model/user.model';
 

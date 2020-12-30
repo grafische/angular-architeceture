@@ -1,4 +1,4 @@
-import { UserStructure } from './../../core/model/user.model';
+import { UserFlat } from './../../core/model/user.model';
 import { Pipe, PipeTransform } from '@angular/core';
 import { User } from 'src/app/core/model/user.model';
 
@@ -7,7 +7,7 @@ import { User } from 'src/app/core/model/user.model';
 })
 export class FilterSupervisorPipe implements PipeTransform {
 
-  transform(value: UserStructure[], supervisorId: number): UserStructure[] {
+  transform(value: UserFlat[], supervisorId: number): UserFlat[] {
     return value.filter( user => user.supervisorId === supervisorId );
   }
 

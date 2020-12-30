@@ -5,6 +5,7 @@ import { AuthGuard } from './core/auth/guard/auth.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from './core/auth/components/login-page/login-page.component';
+import { PreloaderPhonesResolver } from './phones/resolver/preloader-phones.resolver';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/urlopy' },
@@ -33,6 +34,12 @@ const routes: Routes = [
     loadChildren: () => import('./structure/structure.module').then(m => m.StructureModule),
     canActivate: [AuthGuard],
     resolve: { data: PreloaderStructureResolver }
+  },
+  {
+    path: 'telefony',
+    loadChildren: () => import('./phones/phones.module').then(m => m.PhonesModule),
+    canActivate: [AuthGuard],
+    resolve: { data: PreloaderPhonesResolver }
   }
 ];
 

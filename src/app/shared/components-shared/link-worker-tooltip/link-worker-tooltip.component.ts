@@ -1,7 +1,7 @@
 import { RoomType } from './../../../core/enum/room-type.enum';
 import { Component, Input, OnInit } from '@angular/core';
-import { Message } from './../../../core/model/message.enum';
-import { UserStructure } from './../../../core/model/user.model';
+import { Message } from '../../../core/enum/message.enum';
+import { UserFlat } from './../../../core/model/user.model';
 
 @Component({
   selector: 'app-link-worker-tooltip',
@@ -10,7 +10,7 @@ import { UserStructure } from './../../../core/model/user.model';
 })
 export class LinkWorkerTooltipComponent implements OnInit {
 
-  @Input() worker: UserStructure;
+  @Input() worker: UserFlat;
   message = Message;
   roomType = RoomType;
 

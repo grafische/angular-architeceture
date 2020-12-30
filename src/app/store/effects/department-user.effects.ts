@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, concatMap, exhaustMap, map, tap } from 'rxjs/operators';
+import { catchError, concatMap, exhaustMap, map, mergeMap, tap } from 'rxjs/operators';
 import * as DepartmentUserActions from '../actions/department-user.actions';
 import { DataDepartmentUserService } from './../services/data-department-user.service';
 import { DataEmployeeService } from './../services/data-employee.service';
 
-
-
 @Injectable()
 export class DepartmentUserEffects {
-
-
 
   constructor(
     private actions$: Actions,

@@ -10,8 +10,8 @@ export const menu: Menu[] = [
     link: "wizytowki"
   },
   {
-    label: "Tematy techniczne",
-    link: "tematy_techniczne"
+    label: "Telefony",
+    link: "telefony"
   },
   {
     label: "Rezerwacje",

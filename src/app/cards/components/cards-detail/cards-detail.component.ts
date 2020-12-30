@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import * as SelectorsDepartmentUsers from '../../../store/selectors/department-user.selectors';
 import * as SelectorsRoute from '../../../store/selectors/route.selectors';
 import { RoomType } from './../../../core/enum/room-type.enum';
-import { Days, RangeDaysWorking } from './../../../core/model/days.enum';
+import { Days, RangeDaysWorking } from '../../../core/enum/days.enum';
 import { User } from './../../../core/model/user.model';
 import { State } from './../../../store';
 

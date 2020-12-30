@@ -1,5 +1,5 @@
-import { Message } from './../../../core/model/message.enum';
-import { User, UserStructure } from './../../../core/model/user.model';
+import { Message } from '../../../core/enum/message.enum';
+import { User, UserFlat } from './../../../core/model/user.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -16,12 +16,12 @@ import { State } from './../../../store';
 export class StructureDirectorComponent implements OnInit {
 
   @Input() department: DepartmentUser;
-  @Input() users: UserStructure[];
-  @Input() directors: UserStructure[];
+  @Input() users: UserFlat[];
+  @Input() directors: UserFlat[];
   structure = Structure;
   message = Message;
   directorDepartmentUser$: Observable<DepartmentUser[]>;
-  users_data: UserStructure;
+  users_data: UserFlat;
 
   constructor(
     private store: Store<State>

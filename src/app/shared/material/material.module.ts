@@ -11,6 +11,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
+import {MatMenuModule} from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
@@ -27,7 +28,27 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
   declarations: [BottomSheetAlertComponent],
   imports: [
     CommonModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatBottomSheetModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatDividerModule,
+    MatMenuModule
   ],
   entryComponents: [
     BottomSheetAlertComponent
@@ -55,7 +76,8 @@ import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
     MatDatepickerModule,
     MatStepperModule,
     MatFormFieldModule,
-    MatDividerModule
+    MatDividerModule,
+    MatMenuModule
   ]
 })
 export class MaterialModule { }

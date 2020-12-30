@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12">
-      <form [formGroup]="cardForm" (ngSubmit)="onSubmit()" class="full-width" novalidate>
+      <form [formGroup]="cardForm" class="full-width" novalidate>
         <mat-card>
           <mat-card-header>
             <mat-card-title>Formularz</mat-card-title>
@@ -313,6 +313,7 @@
           </mat-card-content>
           <mat-card-actions>
             <button mat-raised-button color="primary" type="submit">Submit</button>
+            <button mat-raised-button color="primary" (click)="onSubmit()">Submit 2</button>
           </mat-card-actions>
           <mat-card-footer>
             <div *ngIf="!formValid" class="alert alert-primary" role="alert">

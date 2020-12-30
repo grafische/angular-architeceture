@@ -1,18 +1,18 @@
-import { tap } from 'rxjs/operators';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import * as DepartmentUserActions from '../../../store/actions/department-user.actions';
 import * as SelectorsDepartmentUsers from '../../../store/selectors/department-user.selectors';
 import { daysWorking } from './../../../core/const/days-working.const';
 import { structure } from './../../../core/const/structure.const';
-import { Days } from './../../../core/model/days.enum';
+import { Days } from '../../../core/enum/days.enum';
 import { DepartmentUser } from './../../../core/model/department-user.model';
 import { Department } from './../../../core/model/department.model';
 import { ErrorInformation, InvalidFields } from './../../../core/model/error-Information.model';
-import { FormMode } from './../../../core/model/form-mode.enum';
-import { Message } from './../../../core/model/message.enum';
+import { FormMode } from '../../../core/enum/form-mode.enum';
+import { Message } from '../../../core/enum/message.enum';
 import { User, UserWorkingHours } from './../../../core/model/user.model';
 import { State } from './../../../store';
 
@@ -122,7 +122,7 @@ export class CardsFormComponent implements OnInit {
 
       if (this.mode === this.formMode.ADD) {
 
-        const departmentIdNewUser = this.empoloyeesForm.at(0).value.departmentId;
+        const departmentIdNewUser: number = this.empoloyeesForm.at(0).value.departmentId;
         const selectDepartmentUser = this.departmentsUser.filter(department => department.id === departmentIdNewUser)[0];
         this.cardForm.patchValue({
           id: selectDepartmentUser.id,
@@ -137,7 +137,6 @@ export class CardsFormComponent implements OnInit {
         const departmentUser = { id: departmentIdNewUser, changes: this.cardForm.value };
         const user = this.empoloyeesForm.at(0).value;
         this.store.dispatch(DepartmentUserActions.addOneDepartmentUser({ departmentUser, user }));
-
       }
     } else {
       this.formValid = false;

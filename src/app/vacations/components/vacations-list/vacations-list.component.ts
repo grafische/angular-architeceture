@@ -8,7 +8,7 @@ import { Vacation } from './../../../core/model/vacation.model';
 import { Department } from './../../../core/model/department.model';
 import { User } from './../../../core/model/user.model';
 import { VacationType } from '../../../core/model/vacation-type.model';
-import { Message } from '../../../core/model/message.enum';
+import { Message } from '../../../core/enum/message.enum';
 
 @Component({
   selector: 'app-vacations-list',

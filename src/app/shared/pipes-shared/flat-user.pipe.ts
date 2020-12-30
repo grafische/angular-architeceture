@@ -1,14 +1,14 @@
-import { User, UserStructure } from './../../core/model/user.model';
 import { Pipe, PipeTransform } from '@angular/core';
+import { User, UserFlat } from './../../core/model/user.model';
 
 @Pipe({
-  name: 'flatUsers'
+  name: 'flatUser'
 })
-export class FlatUsersPipe implements PipeTransform {
+export class FlatUserPipe implements PipeTransform {
 
-  transform(value: User[], level: string): UserStructure[] {
+  transform(value: User[]): UserFlat[] {
     return value.map( user => {
-      const userFlat: UserStructure = (
+      const userFlat: UserFlat = (
       {
         id: user.id,
         name: user.name,

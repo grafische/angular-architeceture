@@ -19,7 +19,7 @@ export class DataEmployeeService {
     return this.http.patch(`${this.apiUrlBase}${this.apiUrlPart}/${data.id}`, data);
   }
 
-  addEmployee(data: User): Observable<User> {
+  addEmployee(data: User) {
     return this.http.post<User>(`${this.apiUrlBase}${this.apiUrlPart}`, data);
   }
 }

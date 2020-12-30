@@ -1,3 +1,4 @@
+import { roomsPositions } from './../../core/const/rooms-positions.const';
 import { ErrorInformation, InvalidFields } from './../../core/model/error-Information.model';
 import { User } from './../../core/model/user.model';
 import { createSelector, props } from '@ngrx/store';
@@ -6,6 +7,7 @@ import { State } from './../';
 import { Structure } from './../../core/enum/structure.enum';
 import { DepartmentUser } from './../../core/model/department-user.model';
 import * as selectorsRoute from './route.selectors';
+import { RoomsPositions } from 'src/app/core/model/rooms-positions.model';
 
 
 export interface DepartmentId {
@@ -188,6 +190,7 @@ export const getDepartmentSelectUsers = createSelector(
   departmentSelectUsers,
   (departmentUsers) => {
       const users: User[] = [];
+      const rooms: RoomsPositions[] = roomsPositions;
       departmentUsers.map(
         arrUser => {
           users.push(...arrUser);

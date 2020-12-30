@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Days, RangeDaysWorking } from './../../../core/model/days.enum';
+import { Days, RangeDaysWorking } from '../../../core/enum/days.enum';
 import { DepartmentUser } from './../../../core/model/department-user.model';
 import { User } from './../../../core/model/user.model';
 
